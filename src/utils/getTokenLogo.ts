@@ -1,7 +1,7 @@
 import { Blockchain } from '@venomswap/sdk'
 import { BLOCKCHAIN } from '../connectors'
-import viperTokenLogo from '../assets/images/viper-token-logo.png'
-import cobraTokenLogo from '../assets/images/cobra-token-logo.png'
+import viperTokenLogo from '../assets/images/hepa-token-logo.png'
+import cobraTokenLogo from '../assets/images/hepa-token-logo.png'
 
 export default function getTokenLogo(): string {
   switch (BLOCKCHAIN) {
