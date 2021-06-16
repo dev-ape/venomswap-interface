@@ -8,7 +8,7 @@ import { TYPE, CloseIcon } from '../../theme'
 import { ButtonConfirmed, ButtonError } from '../Button'
 import ProgressCircles from '../ProgressSteps'
 import CurrencyInputPanel from '../CurrencyInputPanel'
-import { TokenAmount, Pair } from '@venomswap/sdk'
+import { TokenAmount } from '@venomswap/sdk'
 import { useActiveWeb3React } from '../../hooks'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { usePairContract } from '../../hooks/useContract'
@@ -19,10 +19,9 @@ import { TransactionResponse } from '@ethersproject/providers'
 import { useTransactionAdder } from '../../state/transactions/hooks'
 import { LoadingView, SubmittedView } from '../ModalViews'
 import { useMasterBreederContract } from '../../hooks/useContract'
-import { ZERO_ADDRESS } from '../../constants'
 import { BlueCard } from '../Card'
 import { ColumnCenter } from '../Column'
-import { calculateGasMargin } from '../../utils'
+import { calculateGasMargin, getPairInstance } from '../../utils'
 
 /*const HypotheticalRewardRate = styled.div<{ dim: boolean }>`
   display: flex;
@@ -75,10 +74,12 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
   }, [onDismiss])
 
   const masterBreeder = useMasterBreederContract()
-  const referral = ZERO_ADDRESS
 
   // pair contract for this token to be staked
-  const dummyPair = new Pair(new TokenAmount(stakingInfo.tokens[0], '0'), new TokenAmount(stakingInfo.tokens[1], '0'))
+  const dummyPair = getPairInstance(
+    new TokenAmount(stakingInfo.tokens[0], '0'),
+    new TokenAmount(stakingInfo.tokens[1], '0')
+  )
   const pairContract = usePairContract(dummyPair.liquidityToken.address)
 
   // approval data for stake
@@ -92,10 +93,10 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
       if (approval === ApprovalState.APPROVED) {
         const formattedAmount = `0x${parsedAmount.raw.toString(16)}`
 
-        const estimatedGas = await masterBreeder.estimateGas.deposit(stakingInfo.pid, formattedAmount, referral)
+        const estimatedGas = await masterBreeder.estimateGas.deposit(stakingInfo.pid, formattedAmount)
 
         await masterBreeder
-          .deposit(stakingInfo.pid, formattedAmount, referral, {
+          .deposit(stakingInfo.pid, formattedAmount, {
             gasLimit: calculateGasMargin(estimatedGas)
           })
           .then((response: TransactionResponse) => {
@@ -197,7 +198,7 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
         <LoadingView onDismiss={wrappedOnDismiss}>
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>Depositing Liquidity</TYPE.largeHeader>
-            <TYPE.body fontSize={20}>{parsedAmount?.toSignificant(4)} VENOM-LP</TYPE.body>
+            <TYPE.body fontSize={20}>{parsedAmount?.toSignificant(4)} APE-LP</TYPE.body>
           </AutoColumn>
         </LoadingView>
       )}
@@ -205,7 +206,7 @@ export default function StakingModal({ isOpen, onDismiss, stakingInfo, userLiqui
         <SubmittedView onDismiss={wrappedOnDismiss} hash={hash}>
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>Transaction Submitted</TYPE.largeHeader>
-            <TYPE.body fontSize={20}>Deposited {parsedAmount?.toSignificant(4)} VENOM-LP</TYPE.body>
+            <TYPE.body fontSize={20}>Deposited {parsedAmount?.toSignificant(4)} APE-LP</TYPE.body>
           </AutoColumn>
         </SubmittedView>
       )}

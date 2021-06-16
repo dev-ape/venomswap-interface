@@ -6,6 +6,7 @@ import { useActiveWeb3React } from '../hooks'
 
 import { useMultipleContractSingleData } from '../state/multicall/hooks'
 import { wrappedCurrency } from '../utils/wrappedCurrency'
+import { getPairAddress, getPairInstance } from '../utils'
 
 const PAIR_INTERFACE = new Interface(IUniswapV2PairABI)
 
@@ -31,7 +32,7 @@ export function usePairs(currencies: [Currency | undefined, Currency | undefined
   const pairAddresses = useMemo(
     () =>
       tokens.map(([tokenA, tokenB]) => {
-        return tokenA && tokenB && !tokenA.equals(tokenB) ? Pair.getAddress(tokenA, tokenB) : undefined
+        return tokenA && tokenB && !tokenA.equals(tokenB) ? getPairAddress(tokenA, tokenB) : undefined
       }),
     [tokens]
   )
@@ -51,7 +52,7 @@ export function usePairs(currencies: [Currency | undefined, Currency | undefined
       const [token0, token1] = tokenA.sortsBefore(tokenB) ? [tokenA, tokenB] : [tokenB, tokenA]
       return [
         PairState.EXISTS,
-        new Pair(new TokenAmount(token0, reserve0.toString()), new TokenAmount(token1, reserve1.toString()))
+        getPairInstance(new TokenAmount(token0, reserve0.toString()), new TokenAmount(token1, reserve1.toString()))
       ]
     })
   }, [results, tokens])

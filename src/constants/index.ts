@@ -15,11 +15,24 @@ export const ROUTER_ADDRESSES: { [chainId in ChainId]: string } = {
   [ChainId.RINKEBY]: ZERO_ONE_ADDRESS,
   [ChainId.GÖRLI]: ZERO_ONE_ADDRESS,
   [ChainId.KOVAN]: ZERO_ONE_ADDRESS,
-  [ChainId.BSC_MAINNET]: ZERO_ONE_ADDRESS,
-  [ChainId.BSC_TESTNET]: '0xDBbEbd367133609DA8c7AcDF96A4498E4F0f1F9c',
-  [ChainId.HARMONY_MAINNET]: '0xf012702a5f0e54015362cBCA26a26fc90AA832a3',
-  [ChainId.HARMONY_TESTNET]: '0x8e9A3cE409B13ef459fE4448aE97a79d6Ecd8b4b'
+  [ChainId.BSC_MAINNET]: '0xD99D1c33F9fC3444f8101754aBC46c52416550D1',
+  [ChainId.BSC_TESTNET]: '0xD99D1c33F9fC3444f8101754aBC46c52416550D1',
+  [ChainId.HARMONY_MAINNET]: '0xD99D1c33F9fC3444f8101754aBC46c52416550D1',
+  [ChainId.HARMONY_TESTNET]: '0xD99D1c33F9fC3444f8101754aBC46c52416550D1'
 }
+
+export const FACTORY_ADDRESSES: { [chainId in ChainId]: string } = {
+  [ChainId.MAINNET]: ZERO_ONE_ADDRESS,
+  [ChainId.ROPSTEN]: ZERO_ONE_ADDRESS,
+  [ChainId.RINKEBY]: ZERO_ONE_ADDRESS,
+  [ChainId.GÖRLI]: ZERO_ONE_ADDRESS,
+  [ChainId.KOVAN]: ZERO_ONE_ADDRESS,
+  [ChainId.BSC_MAINNET]: '0x6725F303b657a9451d8BA641348b6761A6CC7a17',
+  [ChainId.BSC_TESTNET]: '0x6725F303b657a9451d8BA641348b6761A6CC7a17',
+  [ChainId.HARMONY_MAINNET]: '0x6725F303b657a9451d8BA641348b6761A6CC7a17',
+  [ChainId.HARMONY_TESTNET]: '0x6725F303b657a9451d8BA641348b6761A6CC7a17'
+}
+export const INIT_CODE_HASH = '0xd0d4c4cd0848c93cb4fd1f498d7013ee6bfb25783ea21593d5834f5d250ece66'
 
 export const GOVERNANCE_ADDRESS = '0x5e4be8Bc9637f0EAA1A755019e06A68ce081D58F'
 
@@ -31,13 +44,13 @@ export const GOVERNANCE_TOKEN: { [chainId in ChainId]: Token } = {
   [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, ZERO_ONE_ADDRESS, 18, 'VIPER', 'Viper'),
   [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, ZERO_ONE_ADDRESS, 18, 'VIPER', 'Viper'),
   [ChainId.KOVAN]: new Token(ChainId.KOVAN, ZERO_ONE_ADDRESS, 18, 'VIPER', 'Viper'),
-  [ChainId.BSC_MAINNET]: new Token(ChainId.BSC_MAINNET, ZERO_ONE_ADDRESS, 18, 'COBRA', 'Cobra'),
+  [ChainId.BSC_MAINNET]: new Token(ChainId.BSC_MAINNET, ZERO_ONE_ADDRESS, 18, 'HEPA', 'Hepa'),
   [ChainId.BSC_TESTNET]: new Token(
     ChainId.BSC_TESTNET,
-    '0x955F82C58dCd3c1369769aEc1Bbd80611b1cff30',
+    '0xba638f51052b655380E6ea8e857f42b39344ADc7',
     18,
-    'COBRA',
-    'Cobra'
+    'HEPA',
+    'Hepa'
   ),
   [ChainId.HARMONY_MAINNET]: new Token(
     ChainId.HARMONY_MAINNET,
@@ -61,10 +74,10 @@ export const MASTER_BREEDER: { [chainId in ChainId]: string } = {
   [ChainId.ROPSTEN]: ZERO_ONE_ADDRESS,
   [ChainId.GÖRLI]: ZERO_ONE_ADDRESS,
   [ChainId.KOVAN]: ZERO_ONE_ADDRESS,
-  [ChainId.BSC_MAINNET]: ZERO_ONE_ADDRESS,
-  [ChainId.BSC_TESTNET]: '0x8E7Cfa9685935fd87562E5749eFCAF64Eef61DD6',
-  [ChainId.HARMONY_MAINNET]: '0x7AbC67c8D4b248A38B0dc5756300630108Cb48b4',
-  [ChainId.HARMONY_TESTNET]: '0x651e2E555164834bc42303c1a1B4f795a9Fb7619'
+  [ChainId.BSC_MAINNET]: '0xd3260Bdec435b0E4388622DE6d16d7ef3Fcd1F9f',
+  [ChainId.BSC_TESTNET]: '0xd3260Bdec435b0E4388622DE6d16d7ef3Fcd1F9f',
+  [ChainId.HARMONY_MAINNET]: '0xd3260Bdec435b0E4388622DE6d16d7ef3Fcd1F9f',
+  [ChainId.HARMONY_TESTNET]: '0xd3260Bdec435b0E4388622DE6d16d7ef3Fcd1F9f'
 }
 
 export const PIT_BREEDER: { [chainId in ChainId]: string } = {
@@ -127,10 +140,10 @@ export const WEB_INTERFACES: { [chainId in ChainId]: string[] } = {
   [ChainId.ROPSTEN]: [''],
   [ChainId.GÖRLI]: [''],
   [ChainId.KOVAN]: [''],
-  [ChainId.BSC_MAINNET]: ['cobra.exchange', 'cobraswap.io', 'cobradex.org'],
-  [ChainId.BSC_TESTNET]: ['cobra.exchange', 'cobraswap.io', 'cobradex.org'],
-  [ChainId.HARMONY_MAINNET]: ['viper.exchange', 'viperswap.one', 'viperswap.com', 'viperswap.io', 'viperswap.org'],
-  [ChainId.HARMONY_TESTNET]: ['viper.exchange', 'viperswap.one', 'viperswap.com', 'viperswap.io', 'viperswap.org']
+  [ChainId.BSC_MAINNET]: ['app.hepa.finance'],
+  [ChainId.BSC_TESTNET]: ['app.hepa.finance'],
+  [ChainId.HARMONY_MAINNET]: ['app.hepa.finance'],
+  [ChainId.HARMONY_TESTNET]: ['app.hepa.finance']
 }
 
 export { PRELOADED_PROPOSALS } from './proposals'
@@ -140,16 +153,123 @@ type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]
 }
 
-export const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
-export const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD//C')
-export const USDT = new Token(ChainId.MAINNET, '0xdAC17F958D2ee523a2206206994597C13D831ec7', 6, 'USDT', 'Tether USD')
-export const COMP = new Token(ChainId.MAINNET, '0xc00e94Cb662C3520282E6f5717214004A7f26888', 18, 'COMP', 'Compound')
-export const MKR = new Token(ChainId.MAINNET, '0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2', 18, 'MKR', 'Maker')
-export const AMPL = new Token(ChainId.MAINNET, '0xD46bA6D942050d489DBd938a2C909A5d5039A161', 9, 'AMPL', 'Ampleforth')
-export const WBTC = new Token(ChainId.MAINNET, '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599', 8, 'WBTC', 'Wrapped BTC')
+//export const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
+export const USDC = new Token(ChainId.BSC_MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD//C')
+//export const USDT = new Token(ChainId.MAINNET, '0xdAC17F958D2ee523a2206206994597C13D831ec7', 6, 'USDT', 'Tether USD')
+export const COMP = new Token(ChainId.BSC_MAINNET, '0xc00e94Cb662C3520282E6f5717214004A7f26888', 18, 'COMP', 'Compound')
+export const MKR = new Token(ChainId.BSC_MAINNET, '0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2', 18, 'MKR', 'Maker')
+export const AMPL = new Token(
+  ChainId.BSC_MAINNET,
+  '0xD46bA6D942050d489DBd938a2C909A5d5039A161',
+  9,
+  'AMPL',
+  'Ampleforth'
+)
+export const WBTC = new Token(
+  ChainId.BSC_MAINNET,
+  '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599',
+  8,
+  'WBTC',
+  'Wrapped BTC'
+)
+
+export const DAI = new Token(
+  ChainId.BSC_MAINNET,
+  '0x1af3f329e8be154074d8769d1ffa4ee058b1dbc3',
+  18,
+  'DAI',
+  'Dai Stablecoin'
+)
+export const BUSD = new Token(
+  ChainId.BSC_MAINNET,
+  '0xe9e7cea3dedca5984780bafc599bd69add087d56',
+  18,
+  'BUSD',
+  'Binance USD'
+)
+export const USDT = new Token(
+  ChainId.BSC_MAINNET,
+  '0x55d398326f99059ff775485246999027b3197955',
+  18,
+  'USDT',
+  'Tether USD'
+)
+export const EOS = new Token(ChainId.BSC_MAINNET, '0x56b6fb708fc5732dec1afc8d8556423a2edccbd6', 18, 'EOS', 'EOS Token')
+export const DOT = new Token(
+  ChainId.BSC_MAINNET,
+  '0x7083609fce4d1d8dc0c979aab8c869ea2c873402',
+  18,
+  'DOT',
+  'Polkadot Token'
+)
+export const ETH = new Token(
+  ChainId.BSC_MAINNET,
+  '0x2170ed0880ac9a755fd29b2688956bd959f933f8',
+  18,
+  'ETH',
+  'Ethereum Token'
+)
+export const BETH = new Token(
+  ChainId.BSC_MAINNET,
+  '0x250632378E573c6Be1AC2f97Fcdf00515d0Aa91B',
+  18,
+  'BETH',
+  'Binance Beacon Ethereum Token'
+)
+export const MBANANA = new Token(
+  ChainId.BSC_MAINNET,
+  '0x603c7f932ED1fc6575303D8Fb018fDCBb0f39a95',
+  18,
+  'BANANA',
+  'ApeSwap token'
+)
+export const BTCB = new Token(
+  ChainId.BSC_MAINNET,
+  '0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c',
+  18,
+  'BTCB',
+  'Binance BTC'
+)
+
+export const HEPA = new Token(
+  ChainId.BSC_TESTNET,
+  '0xC987BEA2149629ff83C11FfAbfD07b45ecb94700',
+  18,
+  'HEPA',
+  'Hepa Token'
+)
+export const TBUSD = new Token(
+  ChainId.BSC_TESTNET,
+  '0x78867BbEeF44f2326bF8DDd1941a4439382EF2A7',
+  18,
+  'BUSD',
+  'Testnet Binance USD'
+)
+export const TETH = new Token(
+  ChainId.BSC_TESTNET,
+  '0x8babbb98678facc7342735486c851abd7a0d17ca',
+  18,
+  'ETH',
+  'Testnet Binance ETH'
+)
+export const TBTC = new Token(
+  ChainId.BSC_TESTNET,
+  '0x6ce8da28e2f864420840cf74474eff5fd80e65b8',
+  18,
+  'BTCB',
+  'Testnet Binance BTC'
+)
+
+export const TDAI = new Token(
+  ChainId.BSC_TESTNET,
+  '0x8a9424745056Eb399FD19a0EC26A14316684e274',
+  18,
+  'DAI',
+  'Testnet Binance BTC'
+)
 
 // Block time here is slightly higher (~1s) than average in order to avoid ongoing proposals past the displayed time
-export const AVERAGE_BLOCK_TIME_IN_SECS = 13
+export const AVERAGE_BLOCK_TIME_IN_SECS = 3
 export const PROPOSAL_LENGTH_IN_BLOCKS = 40_320
 export const PROPOSAL_LENGTH_IN_SECS = AVERAGE_BLOCK_TIME_IN_SECS * PROPOSAL_LENGTH_IN_BLOCKS
 
@@ -181,6 +301,7 @@ const WETH_ONLY: ChainTokenList = {
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
   [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC, USDT, COMP, MKR, WBTC],
+  [ChainId.BSC_TESTNET]: [...WETH_ONLY[ChainId.BSC_TESTNET], TBUSD, TDAI],
   [ChainId.HARMONY_MAINNET]: [
     ...WETH_ONLY[ChainId.HARMONY_MAINNET],
     getTokenWithDefault(ChainId.HARMONY_MAINNET, 'BUSD'),
@@ -198,7 +319,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
  */
 export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
   [ChainId.MAINNET]: {
-    [AMPL.address]: [DAI, WETH[ChainId.MAINNET]]
+    [ETH.address]: [DAI, WETH[ChainId.MAINNET]]
   }
 }
 

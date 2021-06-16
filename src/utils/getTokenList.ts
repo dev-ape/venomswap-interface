@@ -5,6 +5,10 @@ import contenthashToUri from './contenthashToUri'
 import { parseENSAddress } from './parseENSAddress'
 import uriToHttp from './uriToHttp'
 
+import { APESWAP_DEFAULT_LIST, APESWAP_COMMUNITY_LIST } from '../constants/lists'
+import defaultTokenJson from '../constants/token/apeswap.json'
+import buidlTokenJson from '../constants/token/buidl.json'
+
 const tokenListValidator = new Ajv({ allErrors: true }).compile(schema)
 
 /**
@@ -16,6 +20,13 @@ export default async function getTokenList(
   listUrl: string,
   resolveENSContentHash: (ensName: string) => Promise<string>
 ): Promise<TokenList> {
+  if (listUrl === APESWAP_DEFAULT_LIST) {
+    return defaultTokenJson
+  }
+  if (listUrl === APESWAP_COMMUNITY_LIST) {
+    return buidlTokenJson
+  }
+
   const parsedENS = parseENSAddress(listUrl)
   let urls: string[]
   if (parsedENS) {

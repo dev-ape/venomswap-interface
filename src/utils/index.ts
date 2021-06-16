@@ -1,11 +1,22 @@
 import { Contract } from '@ethersproject/contracts'
-import { getAddress } from '@ethersproject/address'
+import { getAddress, getCreate2Address } from '@ethersproject/address'
 import { AddressZero } from '@ethersproject/constants'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
+import { pack, keccak256 } from '@ethersproject/solidity'
 import { BigNumber } from '@ethersproject/bignumber'
 import { abi as IUniswapV2Router02ABI } from '@venomswap/periphery/build/IUniswapV2Router02.json'
-import { ROUTER_ADDRESSES } from '../constants'
-import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, DEFAULT_CURRENCIES } from '@venomswap/sdk'
+import { FACTORY_ADDRESSES, INIT_CODE_HASH, ROUTER_ADDRESSES } from '../constants'
+import {
+  ChainId,
+  JSBI,
+  Percent,
+  Token,
+  CurrencyAmount,
+  Currency,
+  DEFAULT_CURRENCIES,
+  Pair,
+  TokenAmount
+} from '@venomswap/sdk'
 import { TokenAddressMap } from '../state/lists/hooks'
 import { useActiveWeb3React } from '../hooks/index'
 
@@ -123,4 +134,40 @@ export function escapeRegExp(string: string): string {
 export function isTokenOnList(defaultTokens: TokenAddressMap, currency?: Currency): boolean {
   if (currency && DEFAULT_CURRENCIES.includes(currency)) return true
   return Boolean(currency instanceof Token && defaultTokens[currency.chainId]?.[currency.address])
+}
+
+let PAIR_ADDRESS_CACHE: { [token0Address: string]: { [token1Address: string]: string } } = {}
+
+export function getPairAddress(tokenA: Token, tokenB: Token): string {
+  const tokens = tokenA.sortsBefore(tokenB) ? [tokenA, tokenB] : [tokenB, tokenA] // does safety checks
+
+  if (PAIR_ADDRESS_CACHE?.[tokens[0].address]?.[tokens[1].address] === undefined) {
+    PAIR_ADDRESS_CACHE = {
+      ...PAIR_ADDRESS_CACHE,
+      [tokens[0].address]: {
+        ...PAIR_ADDRESS_CACHE?.[tokens[0].address],
+        [tokens[1].address]: getCreate2Address(
+          FACTORY_ADDRESSES[tokenA.chainId],
+          keccak256(['bytes'], [pack(['address', 'address'], [tokens[0].address, tokens[1].address])]),
+          INIT_CODE_HASH
+        )
+      }
+    }
+  }
+
+  return PAIR_ADDRESS_CACHE[tokens[0].address][tokens[1].address]
+}
+
+export function getPairInstance(tokenAmountA: TokenAmount, tokenAmountB: TokenAmount): Pair {
+  const pair = new Pair(tokenAmountA, tokenAmountB)
+  Object.assign(pair, {
+    liquidityToken: new Token(
+      tokenAmountA.token.chainId,
+      getPairAddress(tokenAmountA.token, tokenAmountB.token),
+      18,
+      'APE-LP',
+      'Apeswap LP Token'
+    )
+  })
+  return pair
 }

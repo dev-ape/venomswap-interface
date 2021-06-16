@@ -14,8 +14,7 @@ import useBlockchain from '../../hooks/useBlockchain'
 export const getTokenLogoURL = (address: string) =>
   `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${address}/logo.png`
 
-export const getTokenFallbackLogoURL = (currency: Currency) =>
-  `https://d1xrz6ki9z98vb.cloudfront.net/venomswap/tokens/${currency.symbol}.png`
+export const getTokenFallbackLogoURL = (currency: Currency) => `/images/coins/${currency.symbol}.png`
 
 const StyledEthereumLogo = styled.img<{ size: string }>`
   width: ${({ size }) => size};

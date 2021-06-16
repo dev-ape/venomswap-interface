@@ -1,5 +1,5 @@
 import { UNSUPPORTED_LIST_URLS } from './../../constants/lists'
-import DEFAULT_TOKEN_LIST from '@venomswap/default-token-list'
+//import DEFAULT_TOKEN_LIST from '@venomswap/default-token-list'
 import { ChainId, Token } from '@venomswap/sdk'
 import { Tags, TokenInfo, TokenList } from '@uniswap/token-lists'
 import { useMemo } from 'react'
@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux'
 import { AppState } from '../index'
 import sortByListPriority from 'utils/listSort'
 import UNSUPPORTED_TOKEN_LIST from '../../constants/tokenLists/uniswap-v2-unsupported.tokenlist.json'
+import DEFAULT_TOKEN_LIST from '../../constants/token/apeswap.json'
+//import DEFAULT_BUIDL_LIST from '../../constants/token/buidl.json';
 
 type TagDetails = Tags[keyof Tags]
 export interface TagInfo extends TagDetails {

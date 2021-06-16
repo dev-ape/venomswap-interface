@@ -14,7 +14,6 @@ import { StakingInfo, useDerivedUnstakeInfo } from '../../state/stake/hooks'
 import { TransactionResponse } from '@ethersproject/providers'
 import { useTransactionAdder } from '../../state/transactions/hooks'
 import { LoadingView, SubmittedView } from '../ModalViews'
-import { ZERO_ADDRESS } from '../../constants'
 import usePlatformName from '../../hooks/usePlatformName'
 import { BlueCard } from '../Card'
 import { ColumnCenter } from '../Column'
@@ -88,7 +87,6 @@ export default function ModifiedStakingModal({ isOpen, onDismiss, stakingInfo }:
 
   const platformName = usePlatformName()
   const masterBreeder = useMasterBreederContract()
-  const referral = ZERO_ADDRESS
 
   // pair contract for this token to be staked
   const dummyPair = new Pair(new TokenAmount(stakingInfo.tokens[0], '0'), new TokenAmount(stakingInfo.tokens[1], '0'))
@@ -105,10 +103,10 @@ export default function ModifiedStakingModal({ isOpen, onDismiss, stakingInfo }:
       setAttempting(true)
 
       const formattedAmount = `0x${parsedAmount?.raw.toString(16)}`
-      const estimatedGas = await masterBreeder.estimateGas.withdraw(stakingInfo.pid, formattedAmount, referral)
+      const estimatedGas = await masterBreeder.estimateGas.withdraw(stakingInfo.pid, formattedAmount)
 
       await masterBreeder
-        .withdraw(stakingInfo.pid, formattedAmount, referral, {
+        .withdraw(stakingInfo.pid, formattedAmount, {
           gasLimit: calculateGasMargin(estimatedGas)
         })
         .then((response: TransactionResponse) => {

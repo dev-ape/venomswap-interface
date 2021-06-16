@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { Send, Code, MessageSquare, PieChart } from 'react-feather'
+import { Send, BookOpen, PieChart } from 'react-feather'
 import styled from 'styled-components'
 import { ReactComponent as MenuIcon } from '../../assets/images/menu.svg'
 import { useActiveWeb3React } from '../../hooks'
@@ -89,8 +89,6 @@ const MenuItem = styled(ExternalLink)`
   }
 `
 
-const CODE_LINK = 'https://github.com/VenomProtocol'
-
 export default function Menu() {
   const { account } = useActiveWeb3React()
   const blockchain = useBlockchain()
@@ -111,21 +109,17 @@ export default function Menu() {
 
       {open && (
         <MenuFlyout>
-          <MenuItem id="link" href="https://info.viper.exchange">
+          <MenuItem id="link" href="https://info.apeswap.finance/">
             <PieChart size={14} />
             Analytics
           </MenuItem>
-          <MenuItem id="link" href="https://discord.viper.exchange">
-            <MessageSquare size={14} />
-            Discord
+          <MenuItem id="link" href="https://docs.hepa.finance/">
+            <BookOpen size={14} />
+            Docs
           </MenuItem>
-          <MenuItem id="link" href="https://t.me/VenomDAO">
+          <MenuItem id="link" href="#">
             <Send size={14} />
             Telegram
-          </MenuItem>
-          <MenuItem id="link" href={CODE_LINK}>
-            <Code size={14} />
-            Code
           </MenuItem>
           {account && blockchain === Blockchain.ETHEREUM && (
             <ButtonPrimary onClick={openClaimModal} padding="8px 16px" width="100%" borderRadius="12px" mt="0.5rem">

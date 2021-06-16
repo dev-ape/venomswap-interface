@@ -8,7 +8,7 @@ import { useMultipleContractSingleData } from '../../state/multicall/hooks'
 import { abi as IUniswapV2PairABI } from '@venomswap/core/build/IUniswapV2Pair.json'
 import { Interface } from '@ethersproject/abi'
 import useGovernanceToken from '../../hooks/useGovernanceToken'
-import useTokensWithWethPrices from '../../hooks/useTokensWithWethPrices'
+import useTokensWithWethPrices from '../../hooks/useTokensWithWETHPrices'
 import useBUSDPrice from '../../hooks/useBUSDPrice'
 import useFilterStakingRewardsInfo from '../../hooks/useFilterStakingRewardsInfo'
 import getBlocksPerYear from '../../utils/getBlocksPerYear'
@@ -16,6 +16,7 @@ import calculateWethAdjustedTotalStakedAmount from '../../utils/calculateWethAdj
 import calculateApr from '../../utils/calculateApr'
 import validStakingInfo from '../../utils/validStakingInfo'
 import determineBaseToken from '../../utils/determineBaseToken'
+import { getPairInstance } from '../../utils'
 
 const PAIR_INTERFACE = new Interface(IUniswapV2PairABI)
 
@@ -188,7 +189,7 @@ export function useStakingInfo(active: boolean | undefined = undefined, pairToFi
           JSBI.BigInt(100)
         )
 
-        const dummyPair = new Pair(new TokenAmount(tokens[0], '0'), new TokenAmount(tokens[1], '0'))
+        const dummyPair = getPairInstance(new TokenAmount(tokens[0], '0'), new TokenAmount(tokens[1], '0'))
         const stakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(userInfo?.result?.[0] ?? 0))
         const totalStakedAmount = new TokenAmount(
           dummyPair.liquidityToken,

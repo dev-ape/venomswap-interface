@@ -33,7 +33,6 @@ import Modal from '../Modal'
 import GovTokenBalanceContent from './GovTokenBalanceContent'
 import usePrevious from '../../hooks/usePrevious'
 import { BASE_CURRENCY, BLOCKCHAIN } from '../../connectors'
-import { PIT_SETTINGS } from '../../constants'
 import useGovernanceToken from '../../hooks/useGovernanceToken'
 
 const HeaderFrame = styled.div`
@@ -308,7 +307,6 @@ export default function Header() {
   const { t } = useTranslation()
 
   const govToken = useGovernanceToken()
-  const pitSettings = chainId ? PIT_SETTINGS[chainId] : undefined
 
   let logoDark: string
   let logo: string
@@ -362,24 +360,8 @@ export default function Header() {
           <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
             {t('swap')}
           </StyledNavLink>
-          <StyledNavLink
-            id={`pool-nav-link`}
-            to={'/pool'}
-            isActive={(match, { pathname }) =>
-              Boolean(match) ||
-              pathname.startsWith('/add') ||
-              pathname.startsWith('/remove') ||
-              pathname.startsWith('/create') ||
-              pathname.startsWith('/find')
-            }
-          >
-            {t('pool')}
-          </StyledNavLink>
           <StyledNavLink id={`stake-nav-link`} to={'/staking'}>
             Staking
-          </StyledNavLink>
-          <StyledNavLink id={`stake-nav-link`} to={`${pitSettings?.path}`}>
-            {pitSettings?.name}
           </StyledNavLink>
         </HeaderLinks>
       </HeaderRow>
