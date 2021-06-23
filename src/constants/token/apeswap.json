@@ -58,6 +58,14 @@
       "logoURI": "/images/coins/HEPA.svg"
     },
     {
+      "name": "HEPA Token",
+      "symbol": "HEPA",
+      "address": "0xba638f51052b655380E6ea8e857f42b39344ADc7",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/HEPA.svg"
+    },
+    {
       "name": "ETH Token",
       "symbol": "ETH",
       "address": "0xd66c6b4f0be8ce5b39d52e0fd1344c389929b378",
