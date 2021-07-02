@@ -46,7 +46,7 @@ export const GOVERNANCE_TOKEN: { [chainId in ChainId]: Token } = {
   [ChainId.KOVAN]: new Token(ChainId.KOVAN, ZERO_ONE_ADDRESS, 18, 'VIPER', 'Viper'),
   [ChainId.BSC_MAINNET]: new Token(
     ChainId.BSC_MAINNET,
-    '0xba638f51052b655380E6ea8e857f42b39344ADc7',
+    '0x9159F30F1c3F0317b0a2D6bC176f29266Be790eE',
     18,
     'HEPA',
     'Hepa'
@@ -80,7 +80,7 @@ export const MASTER_BREEDER: { [chainId in ChainId]: string } = {
   [ChainId.ROPSTEN]: ZERO_ONE_ADDRESS,
   [ChainId.GÖRLI]: ZERO_ONE_ADDRESS,
   [ChainId.KOVAN]: ZERO_ONE_ADDRESS,
-  [ChainId.BSC_MAINNET]: '0xd3260Bdec435b0E4388622DE6d16d7ef3Fcd1F9f',
+  [ChainId.BSC_MAINNET]: '0x580313Da32177bd8d873FaCA272A43Fc0A663236',
   [ChainId.BSC_TESTNET]: '0xd3260Bdec435b0E4388622DE6d16d7ef3Fcd1F9f',
   [ChainId.HARMONY_MAINNET]: '0xd3260Bdec435b0E4388622DE6d16d7ef3Fcd1F9f',
   [ChainId.HARMONY_TESTNET]: '0xd3260Bdec435b0E4388622DE6d16d7ef3Fcd1F9f'
@@ -239,7 +239,7 @@ export const BTCB = new Token(
 
 export const HEPA = new Token(
   ChainId.BSC_MAINNET,
-  '0xC987BEA2149629ff83C11FfAbfD07b45ecb94700',
+  '0x9159F30F1c3F0317b0a2D6bC176f29266Be790eE',
   18,
   'HEPA',
   'Hepa Token'
