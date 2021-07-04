@@ -41,10 +41,18 @@ export default function useCalculateWithdrawalFee(
   const blockDeltaEndStages = useStages(masterBreeder, 'blockDeltaEndStage', [0, 1, 2, 3, 4, 5])
   const devFeeStages = useStages(masterBreeder, 'devFeeStage', defaultStageIndexes)
 
-  const lastWithdrawBlock = userInfo?.[3]
-  const firstDepositBlock = userInfo?.[4]
-  const blockDelta = userInfo?.[5]
-  const lastDepositBlock = userInfo?.[6]
+  console.log(userInfo)
+  const lastWithdrawBlock: BigNumber = userInfo?.[3]
+  const firstDepositBlock: BigNumber = userInfo?.[4]
+  const lastDepositBlock: BigNumber = userInfo?.[5]
+  // uint256 userBlockDelta = block.number.sub(user.firstDepositBlock);
+  // if (user.lastWithdrawBlock > 0) {
+  //   userBlockDelta = block.number.sub(user.lastWithdrawBlock);
+  // }
+
+  const blockDelta = lastWithdrawBlock.gt('0')
+    ? BigNumber.from(currentBlock).sub(lastWithdrawBlock)
+    : BigNumber.from(currentBlock).sub(firstDepositBlock)
 
   if (
     lastWithdrawBlock.eq(BigNumber.from(0)) &&

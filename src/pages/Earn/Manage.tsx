@@ -1,7 +1,6 @@
 import React, { useCallback, useState, useMemo } from 'react'
 import { AutoColumn } from '../../components/Column'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 
 import { JSBI } from '@venomswap/sdk'
 import { RouteComponentProps } from 'react-router-dom'
@@ -27,7 +26,7 @@ import { wrappedCurrency } from '../../utils/wrappedCurrency'
 import { currencyId } from '../../utils/currencyId'
 import { usePair } from '../../data/Reserves'
 import usePrevious from '../../hooks/usePrevious'
-import { BIG_INT_ZERO } from '../../constants'
+import { BIG_INT_ZERO, LUQIDITY_ADD_URI } from '../../constants'
 import useGovernanceToken from '../../hooks/useGovernanceToken'
 
 const PageWrapper = styled(AutoColumn)`
@@ -145,6 +144,14 @@ export default function Manage({
     }
   }, [account, toggleWalletModal])
 
+  const handleAddLiquidityClick = () => {
+    const baseCurrency = currencyA && currencyId(currencyA)
+    const url = `${LUQIDITY_ADD_URI}/add/${baseCurrency === 'BNB' ? 'ETH' : baseCurrency}/${currencyB &&
+      currencyId(currencyB)}`
+    const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+    if (newWindow) newWindow.opener = null
+  }
+
   return (
     <PageWrapper gap="lg" justify="center">
       <RowBetween style={{ gap: '24px' }}>
@@ -194,13 +201,7 @@ export default function Manage({
                   {`APE-LP tokens are required. Once you've added liquidity to the ${currencyA?.symbol}-${currencyB?.symbol} pool you can stake your liquidity tokens on this page.`}
                 </TYPE.white>
               </RowBetween>
-              <ButtonPrimary
-                padding="8px"
-                borderRadius="8px"
-                width={'fit-content'}
-                as={Link}
-                to={`/add/${currencyA && currencyId(currencyA)}/${currencyB && currencyId(currencyB)}`}
-              >
+              <ButtonPrimary padding="8px" borderRadius="8px" width={'fit-content'} onClick={handleAddLiquidityClick}>
                 {`Add ${currencyA?.symbol}-${currencyB?.symbol} liquidity`}
               </ButtonPrimary>
             </AutoColumn>

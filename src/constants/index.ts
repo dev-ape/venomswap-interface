@@ -9,6 +9,8 @@ import getTokenWithDefault from '../utils/getTokenWithDefault'
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 export const ZERO_ONE_ADDRESS = '0x0000000000000000000000000000000000000001'
 
+export const LUQIDITY_ADD_URI = 'https://app.apeswap.finance'
+
 export const ROUTER_ADDRESSES: { [chainId in ChainId]: string } = {
   [ChainId.MAINNET]: ZERO_ONE_ADDRESS,
   [ChainId.ROPSTEN]: ZERO_ONE_ADDRESS,
