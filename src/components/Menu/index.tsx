@@ -117,7 +117,7 @@ export default function Menu() {
             <BookOpen size={14} />
             Docs
           </MenuItem>
-          <MenuItem id="link" href="#">
+          <MenuItem id="link" href="http://T.me/hepafinance">
             <Send size={14} />
             Telegram
           </MenuItem>
