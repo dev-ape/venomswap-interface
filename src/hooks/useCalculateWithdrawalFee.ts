@@ -27,7 +27,8 @@ function useStages(contract: Contract | null, method: string, stages: number[]):
 
 export default function useCalculateWithdrawalFee(
   pid: number,
-  account: string | null | undefined
+  account: string | null | undefined,
+  emergency = false
 ): Record<string, any> {
   let withdrawalFee: Fraction | undefined
 
@@ -41,7 +42,6 @@ export default function useCalculateWithdrawalFee(
   const blockDeltaEndStages = useStages(masterBreeder, 'blockDeltaEndStage', [0, 1, 2, 3, 4, 5])
   const devFeeStages = useStages(masterBreeder, 'devFeeStage', defaultStageIndexes)
 
-  console.log(userInfo)
   const lastWithdrawBlock: BigNumber = userInfo?.[3]
   const firstDepositBlock: BigNumber = userInfo?.[4]
   const lastDepositBlock: BigNumber = userInfo?.[5]
@@ -83,7 +83,7 @@ export default function useCalculateWithdrawalFee(
     }
 
     // The code below matches the smart contract implementation
-    if (currentBlockDelta.eq(blockDeltaStartStages[0]) || currentBlockDelta.eq(currentBlockBigNum)) {
+    if (currentBlockDelta.eq(blockDeltaStartStages[0]) || currentBlockDelta.eq(currentBlockBigNum) || emergency) {
       //25% fee for withdrawals of LP tokens in the same block this is to prevent abuse from flashloans
       withdrawalFee = calculateFee(devFeeStages[0], 100)
     } else if (currentBlockDelta.gte(blockDeltaStartStages[1]) && currentBlockDelta.lte(blockDeltaEndStages[0])) {

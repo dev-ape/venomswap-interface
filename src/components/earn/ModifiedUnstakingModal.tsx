@@ -91,7 +91,8 @@ export default function ModifiedStakingModal({ isOpen, onDismiss, stakingInfo }:
   // pair contract for this token to be staked
   const dummyPair = new Pair(new TokenAmount(stakingInfo.tokens[0], '0'), new TokenAmount(stakingInfo.tokens[1], '0'))
 
-  const { lastActionBlock, withdrawalFee } = useCalculateWithdrawalFee(stakingInfo.pid, account)
+  //const { lastActionBlock, withdrawalFee } = useCalculateWithdrawalFee(stakingInfo.pid, account)
+  const { lastActionBlock, withdrawalFee } = useCalculateWithdrawalFee(stakingInfo.pid, account, true)
 
   let feeInfoUrl = ''
   if (blockchain == Blockchain.HARMONY) {
@@ -102,11 +103,13 @@ export default function ModifiedStakingModal({ isOpen, onDismiss, stakingInfo }:
     if (masterBreeder && stakingInfo?.stakedAmount) {
       setAttempting(true)
 
-      const formattedAmount = `0x${parsedAmount?.raw.toString(16)}`
-      const estimatedGas = await masterBreeder.estimateGas.withdraw(stakingInfo.pid, formattedAmount)
+      //const formattedAmount = `0x${parsedAmount?.raw.toString(16)}`
+      //const estimatedGas = await masterBreeder.estimateGas.withdraw(stakingInfo.pid, formattedAmount)
+      const estimatedGas = await masterBreeder.estimateGas.emergencyWithdraw(stakingInfo.pid)
 
       await masterBreeder
-        .withdraw(stakingInfo.pid, formattedAmount, {
+        //.withdraw(stakingInfo.pid, formattedAmount, {
+        .emergencyWithdraw(stakingInfo.pid, {
           gasLimit: calculateGasMargin(estimatedGas)
         })
         .then((response: TransactionResponse) => {
