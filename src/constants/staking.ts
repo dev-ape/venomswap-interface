@@ -14,17 +14,17 @@ export const STAKING_REWARDS_INFO: {
     {
       pid: 0,
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/HEPA'),
-      active: false
+      active: true
     },
     {
       pid: 1,
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'HEPA/TAPE'),
-      active: false
+      active: true
     },
     {
       pid: 2,
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'HEPA/BANANA'),
-      active: false
+      active: true
     }
   ],
   [ChainId.BSC_TESTNET]: [

@@ -334,7 +334,7 @@ export default function Manage({
                   width="160px"
                   onClick={() => setShowUnstakingModal(true)}
                 >
-                  Emergency Withdraw
+                  Withdraw
                 </ButtonPrimary>
               </>
             )}
