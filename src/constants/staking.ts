@@ -31,7 +31,7 @@ export const STAKING_REWARDS_INFO: {
     {
       pid: 0,
       tokens: getPairTokensWithDefaults(ChainId.BSC_TESTNET, 'WBNB/HEPA'),
-      active: false
+      active: true
     }
   ]
 }
