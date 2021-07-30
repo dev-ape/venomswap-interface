@@ -25,6 +25,26 @@ export const STAKING_REWARDS_INFO: {
       pid: 2,
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'HEPA/BANANA'),
       active: true
+    },
+    {
+      pid: 3,
+      tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'HEPA/CAKE'),
+      active: true
+    },
+    {
+      pid: 4,
+      tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'HEPA/BUSD'),
+      active: true
+    },
+    {
+      pid: 5,
+      tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'DAI/BUSD'),
+      active: true
+    },
+    {
+      pid: 6,
+      tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'BNB/BUSD'),
+      active: true
     }
   ],
   [ChainId.BSC_TESTNET]: [
