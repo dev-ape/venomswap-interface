@@ -43,7 +43,12 @@ export const STAKING_REWARDS_INFO: {
     },
     {
       pid: 6,
-      tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'BNB/BUSD'),
+      tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/BUSD'),
+      active: true
+    },
+    {
+      pid: 7,
+      tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'BHUNT/HEPA'),
       active: true
     }
   ],
