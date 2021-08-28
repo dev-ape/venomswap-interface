@@ -51,9 +51,25 @@
       "logoURI": "/images/coins/BUSD.svg"
     },
     {
+      "name": "HEPA Token",
+      "symbol": "HEPA",
+      "address": "0xba638f51052b655380E6ea8e857f42b39344ADc7",
+      "chainId": 97,
+      "decimals": 18,
+      "logoURI": "/images/coins/HEPA.svg"
+    },
+    {
+      "name": "HEPA Token",
+      "symbol": "HEPA",
+      "address": "0x9159F30F1c3F0317b0a2D6bC176f29266Be790eE",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/HEPA.svg"
+    },
+    {
       "name": "DUEL Token",
       "symbol": "DUEL",
-      "address": "0xba638f51052b655380E6ea8e857f42b39344ADc7",
+      "address": "0x4aa3b6dA6898E3770CFaaBC343AdF1de8c29b8c0",
       "chainId": 97,
       "decimals": 18,
       "logoURI": "/images/coins/DUEL.svg"
@@ -61,7 +77,7 @@
     {
       "name": "DUEL Token",
       "symbol": "DUEL",
-      "address": "0x9159F30F1c3F0317b0a2D6bC176f29266Be790eE",
+      "address": "0x4aa3b6dA6898E3770CFaaBC343AdF1de8c29b8c0",
       "chainId": 56,
       "decimals": 18,
       "logoURI": "/images/coins/DUEL.svg"

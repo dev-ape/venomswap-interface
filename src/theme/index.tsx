@@ -173,15 +173,15 @@ export function bscColors(darkMode: boolean): Colors {
     bg1: darkMode ? '#172331' : '#FFFFFF',
     bg2: darkMode ? '#141F2B' : '#F7F8FA',
     bg3: darkMode ? '#172331' : '#EDEEF2',
-    bg4: darkMode ? '#33404F' : '#CED0D9',
+    bg4: darkMode ? '#273749' : '#CED0D9',
     bg5: darkMode ? '#33404F' : '#888D9B',
 
     //specialty colors
     modalBG: darkMode ? 'rgba(0,0,0,42.5)' : 'rgba(0,0,0,0.3)',
-    advancedBG: darkMode ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.6)',
+    advancedBG: darkMode ? 'rgba(0,0,0,0.3)' : 'rgba(255,255,255,0.6)',
 
     //primary colors
-    primary1: darkMode ? '#2172E5' : '#ffad00',
+    primary1: darkMode ? '#2193E5' : '#ffad00',
     primary2: darkMode ? '#3680E7' : '#FFE08C',
     primary3: darkMode ? '#4D8FEA' : '#F2CB61',
     primary4: darkMode ? '#376bad70' : '#FFE08C',
@@ -349,6 +349,12 @@ export const TYPE = {
   },
   mediumHeader(props: TextProps) {
     return <TextWrapper fontWeight={500} fontSize={20} {...props} />
+  },
+  tabHeader(props: TextProps) {
+    return <TextWrapper fontWeight={500} fontSize={16} {...props} />
+  },
+  boldSubHeader(props: TextProps) {
+    return <TextWrapper fontWeight={500} fontSize={14} {...props} />
   },
   subHeader(props: TextProps) {
     return <TextWrapper fontWeight={400} fontSize={14} {...props} />

@@ -17,6 +17,7 @@ import Swap from './Swap'
 import { RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
 import usePlatformName from '../hooks/usePlatformName'
 import Manage from './Earn/Manage'
+import Farm from './Farm'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -83,6 +84,7 @@ export default function App() {
             <Switch>
               <Route exact strict path="/swap" component={Swap} />
               <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
+              <Route exact strict path="/farm" component={Farm} />
               <Route exact strict path="/staking" component={Earn} />
               <Route exact strict path="/staking/archived" component={EarnArchived} />
               <Route exact strict path="/staking/:currencyIdA/:currencyIdB" component={Manage} />

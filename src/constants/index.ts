@@ -59,17 +59,17 @@ export const GOVERNANCE_TOKEN: { [chainId in ChainId]: Token } = {
   [ChainId.KOVAN]: new Token(ChainId.KOVAN, ZERO_ONE_ADDRESS, 18, 'VIPER', 'Viper'),
   [ChainId.BSC_MAINNET]: new Token(
     ChainId.BSC_MAINNET,
-    '0x9159F30F1c3F0317b0a2D6bC176f29266Be790eE',
+    '0x4aa3b6dA6898E3770CFaaBC343AdF1de8c29b8c0',
     18,
-    'HEPA',
-    'Hepa'
+    'DUEL',
+    'Duel'
   ),
   [ChainId.BSC_TESTNET]: new Token(
     ChainId.BSC_TESTNET,
-    '0xba638f51052b655380E6ea8e857f42b39344ADc7',
+    '0x4aa3b6dA6898E3770CFaaBC343AdF1de8c29b8c0',
     18,
-    'HEPA',
-    'Hepa'
+    'DUEL',
+    'Duel'
   ),
   [ChainId.HARMONY_MAINNET]: new Token(
     ChainId.HARMONY_MAINNET,
@@ -159,10 +159,10 @@ export const WEB_INTERFACES: { [chainId in ChainId]: string[] } = {
   [ChainId.ROPSTEN]: [''],
   [ChainId.GÖRLI]: [''],
   [ChainId.KOVAN]: [''],
-  [ChainId.BSC_MAINNET]: ['app.hepa.finance'],
-  [ChainId.BSC_TESTNET]: ['app.hepa.finance'],
-  [ChainId.HARMONY_MAINNET]: ['app.hepa.finance'],
-  [ChainId.HARMONY_TESTNET]: ['app.hepa.finance']
+  [ChainId.BSC_MAINNET]: ['app.duel.network'],
+  [ChainId.BSC_TESTNET]: ['app.duel.network'],
+  [ChainId.HARMONY_MAINNET]: ['app.duel.network'],
+  [ChainId.HARMONY_TESTNET]: ['app.duel.network']
 }
 
 export { PRELOADED_PROPOSALS } from './proposals'
@@ -250,12 +250,12 @@ export const BTCB = new Token(
   'Binance BTC'
 )
 
-export const HEPA = new Token(
+export const DUEL = new Token(
   ChainId.BSC_MAINNET,
   '0x9159F30F1c3F0317b0a2D6bC176f29266Be790eE',
   18,
-  'HEPA',
-  'Hepa Token'
+  'DUEL',
+  'Duel Token'
 )
 export const TBUSD = new Token(
   ChainId.BSC_TESTNET,
@@ -347,7 +347,7 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 export const SUGGESTED_BASES: ChainTokenList = {
   ...WETH_ONLY,
   [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC, USDT, WBTC],
-  [ChainId.BSC_MAINNET]: [...WETH_ONLY[ChainId.BSC_MAINNET], BUSD, DAI, HEPA],
+  [ChainId.BSC_MAINNET]: [...WETH_ONLY[ChainId.BSC_MAINNET], BUSD, DAI, DUEL],
   [ChainId.HARMONY_MAINNET]: [
     ...WETH_ONLY[ChainId.HARMONY_MAINNET],
     getTokenWithDefault(ChainId.HARMONY_MAINNET, 'BUSD'),
@@ -359,7 +359,7 @@ export const SUGGESTED_BASES: ChainTokenList = {
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   ...WETH_ONLY,
   [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC, USDT, WBTC],
-  [ChainId.BSC_MAINNET]: [...WETH_ONLY[ChainId.BSC_MAINNET], BUSD, DAI, USDT, HEPA],
+  [ChainId.BSC_MAINNET]: [...WETH_ONLY[ChainId.BSC_MAINNET], BUSD, DAI, USDT, DUEL],
   [ChainId.HARMONY_MAINNET]: [
     ...WETH_ONLY[ChainId.HARMONY_MAINNET],
     getTokenWithDefault(ChainId.HARMONY_MAINNET, 'BUSD'),
