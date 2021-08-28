@@ -1,4 +1,3 @@
-import { transparentize } from 'polished'
 import React, { useMemo } from 'react'
 import styled, {
   ThemeProvider as StyledComponentsThemeProvider,
@@ -171,11 +170,11 @@ export function bscColors(darkMode: boolean): Colors {
     text5: darkMode ? '#2C2F36' : '#EDEEF2',
 
     // backgrounds / greys
-    bg1: darkMode ? '#212429' : '#FFFFFF',
-    bg2: darkMode ? '#2C2F36' : '#F7F8FA',
-    bg3: darkMode ? '#40444F' : '#EDEEF2',
-    bg4: darkMode ? '#565A69' : '#CED0D9',
-    bg5: darkMode ? '#565A69' : '#888D9B',
+    bg1: darkMode ? '#172331' : '#FFFFFF',
+    bg2: darkMode ? '#141F2B' : '#F7F8FA',
+    bg3: darkMode ? '#172331' : '#EDEEF2',
+    bg4: darkMode ? '#33404F' : '#CED0D9',
+    bg5: darkMode ? '#33404F' : '#888D9B',
 
     //specialty colors
     modalBG: darkMode ? 'rgba(0,0,0,42.5)' : 'rgba(0,0,0,0.3)',
@@ -279,12 +278,12 @@ export function harmonyColors(darkMode: boolean): Colors {
 
 export function colors(blockchain: Blockchain, darkMode: boolean): Colors {
   switch (blockchain) {
-    case Blockchain.BINANCE_SMART_CHAIN:
-      return bscColors(darkMode)
-    case Blockchain.HARMONY:
-      return harmonyColors(darkMode)
+    // case Blockchain.BINANCE_SMART_CHAIN:
+    //   return bscColors(darkMode)
+    // case Blockchain.HARMONY:
+    //   return harmonyColors(darkMode)
     default:
-      return viperColors(darkMode)
+      return bscColors(true)
   }
 }
 
@@ -425,12 +424,6 @@ html {
 
 body {
   min-height: 100vh;
-  background-position: 0 -30vh;
-  background-repeat: no-repeat;
-  background-image: ${({ theme }) =>
-    `radial-gradient(50% 50% at 50% 50%, ${transparentize(0.9, theme.primary1)} 0%, ${transparentize(
-      1,
-      theme.bg1
-    )} 100%)`};
+
 }
 `

@@ -149,7 +149,7 @@ export function getPairAddress(tokenA: Token, tokenB: Token): string {
         [tokens[1].address]: getCreate2Address(
           FACTORY_ADDRESSES[tokenA.chainId],
           keccak256(['bytes'], [pack(['address', 'address'], [tokens[0].address, tokens[1].address])]),
-          INIT_CODE_HASH
+          INIT_CODE_HASH[tokenA.chainId]
         )
       }
     }

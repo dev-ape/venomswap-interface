@@ -5,12 +5,12 @@ export default function usePlatformName(): string {
   const blockchain = useBlockchain()
   switch (blockchain) {
     case Blockchain.BINANCE_SMART_CHAIN:
-      return 'Hepa Finance'
+      return 'Duel Network'
     case Blockchain.HARMONY:
-      return 'Hepa Finance'
+      return 'Duel Network'
     case Blockchain.ETHEREUM:
-      return 'Hepa Finance'
+      return 'Duel Network'
     default:
-      return 'Hepa Finance'
+      return 'Duel Network'
   }
 }

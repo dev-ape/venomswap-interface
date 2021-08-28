@@ -1,7 +1,7 @@
 {
-  "background_color": "#fff",
+  "background_color": "#141F2B",
   "display": "standalone",
-  "homepage_url": "https://hepa.finance",
+  "homepage_url": "https://duel.network",
   "icons": [
     {
       "src": "./images/192x192_App_Icon.png",
@@ -17,8 +17,8 @@
     }
   ],
   "orientation": "portrait",
-  "name": "Hepa Finance",
-  "short_name": "Hepafinance",
+  "name": "Duel Network",
+  "short_name": "Duel",
   "start_url": ".",
-  "theme_color": "#00a17e"
+  "theme_color": "#141F2B"
 }
