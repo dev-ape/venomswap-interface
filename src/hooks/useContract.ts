@@ -11,6 +11,7 @@ import { useMemo } from 'react'
 import { GOVERNANCE_ADDRESS, MERKLE_DISTRIBUTOR_ADDRESS, MASTER_BREEDER, PIT, PIT_BREEDER } from '../constants'
 import { abi as MASTER_BREEDER_ABI } from '../constants/abis/MasterHepa.json'
 import { abi as GOVERNANCE_TOKEN_ABI } from '../constants/abis/HepaToken.json'
+import { abi as EVENT_ABI } from '../constants/abis/DuelEvent.json'
 import {
   ARGENT_WALLET_DETECTOR_ABI,
   ARGENT_WALLET_DETECTOR_MAINNET_ADDRESS
@@ -136,6 +137,10 @@ export function usePitBreederContract(withSignerIfPossible?: boolean): Contract 
 
 export function useStakingContract(stakingAddress?: string, withSignerIfPossible?: boolean): Contract | null {
   return useContract(stakingAddress, STAKING_REWARDS_ABI, withSignerIfPossible)
+}
+
+export function useEventContract(address?: string, withSignerIfPossible?: boolean): Contract | null {
+  return useContract(address, EVENT_ABI, withSignerIfPossible)
 }
 
 export function useMasterBreederContract(withSignerIfPossible?: boolean): Contract | null {

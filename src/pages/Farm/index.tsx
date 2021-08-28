@@ -1,14 +1,15 @@
-import React, { useCallback, useState } from 'react'
+import React, { useState } from 'react'
 import Column, { AutoColumn } from '../../components/Column'
 import styled from 'styled-components'
 import { TYPE } from 'theme'
-import { ChainId } from '@venomswap/sdk'
-import getPairTokensWithDefaults from 'utils/getPairTokensWithDefaults'
 import DoubleCurrencyLogo from 'components/DoubleLogo'
 import CurrencyLogo from 'components/CurrencyLogo'
-import { RowBetween } from 'components/Row'
-import { ButtonConfirmed } from 'components/Button'
-import CurrencyInputPanel from 'components/CurrencyInputPanel'
+import { useActiveWeb3React } from 'hooks'
+import useConfigEvents from 'hooks/useEventsConfig'
+import { useEventInfo } from 'state/event/hooks'
+import StakingComponent from 'components/farm/Stake'
+import { useTokenBalance } from 'state/wallet/hooks'
+import UnstakingComponent from 'components/farm/Unstake'
 //import { getPairInstance } from 'utils'
 //import useTheme from 'hooks/useTheme'
 //import { TYPE } from '../../theme'
@@ -60,6 +61,8 @@ const PoolRowsContainer = styled.div`
   display: grid;
   grid-template-columns: 40% repeat(3, auto);
   row-gap: 20px;
+  cursor: pointer;
+  user-select: none;
 `
 
 const PoolHeaderItem = styled(TYPE.boldSubHeader)`
@@ -86,11 +89,9 @@ const PoolWrapper = styled.div`
   width: 100%;
   padding: 20px 0;
   border-radius: 16px;
-  user-select: none;
   background-color: ${({ theme }) => theme.bg3};
   border: none;
   color: ${({ theme }) => theme.text1};
-  cursor: pointer;
   font-size: 16px;
   font-weight: 500;
   box-shadow: 0 4px 15px ${({ theme }) => theme.advancedBG};
@@ -136,201 +137,193 @@ const Divider = styled.hr`
   border: 4px solid ${({ theme }) => theme.bg4};
   border-radius: 4px;
 `
-const CustomButton = styled(ButtonConfirmed)`
-  height: 40px;
-  border-radius: 8px;
-  width: 100%;
-  margin-right: 0;
-`
+// const CustomButton = styled(ButtonConfirmed)`
+//   height: 40px;
+//   border-radius: 8px;
+//   width: 100%;
+//   margin-right: 0;
+// `
 
-const CustomButtonRed = styled(CustomButton)`
-  background-color: ${({ theme }) => theme.red3};
-  &:hover {
-    background-color: ${({ theme }) => theme.red2};
-  }
-`
-const CustomRowBetween = styled(RowBetween)`
+// const CustomButtonRed = styled(CustomButton)`
+//   background-color: ${({ theme }) => theme.red3};
+//   &:hover {
+//     background-color: ${({ theme }) => theme.red2};
+//   }
+//   &:focus {
+//     background-color: ${({ theme }) => theme.red2};
+//   }
+// `
+const StakeUnstakeWrapper = styled.div`
+  display: flex;
   gap: 20px;
 `
+// const InputWrapper = styled.div`
+//   width: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   gap: 20px;
+// `
 
-interface PoolInfo {
-  pid: number
-  name: string
-  pair: string
-  tvl: string
-  rewards: string
-  apr: string
-}
+// interface PoolInfo {
+//   pid: number
+//   name: string
+//   pair: string
+//   tvl: string
+//   rewards: string
+//   apr: string
+// }
 export default function Farm() {
   //const theme = useTheme()
-  const pair = getPairTokensWithDefaults(ChainId.BSC_TESTNET, 'WBNB/DUEL')
-  const [activeTab, setActiveTab] = useState(0)
-  const [typedValue, setTypedValue] = useState('')
+  const { account, chainId } = useActiveWeb3React()
+  const [activeEvent, setActiveEvent] = useState(0)
   const [visibleForms, setVisibleForms] = useState<{ [key: number]: boolean }>({})
 
-  const events = [
-    {
-      id: 0,
-      name: 'Premier League',
-      desc:
-        'Which team will win the FA Cup? Make your choice, join the duel by staking your farms, get higher APR when you win.'
-    },
-    {
-      id: 1,
-      name: 'Rolex Belgian Grand Prix',
-      desc: 'Who wins the race? Make your choice, join the duel by staking your farms, get higher APR when you win.'
-    },
-    {
-      id: 2,
-      name: 'Assets Prediction',
-      desc:
-        'Which will increase in percentage by 16th August? Make your choice, join the duel by staking your farms, get higher APR when you win.'
-    },
-    {
-      id: 3,
-      name: 'Election',
-      desc:
-        'Which one wins the election? Make your choice, join the duel by staking your farms, get higher APR when you win.'
-    },
-    {
-      id: 4,
-      name: 'User Experience',
-      desc:
-        'A company cannot decide on the structure of the application it will develop. You can help them by choosing the feature you like more. Which one do you prefer? Make your choice, join the duel by staking your farms, get higher APR when you win.'
-    }
-  ]
+  const events = useConfigEvents(chainId)
 
-  const pools: { [event: number]: PoolInfo[] } = {
-    0: [
-      { pid: 0, name: 'Arsenal', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' },
-      { pid: 1, name: 'Liverpool', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' }
-    ],
-    1: [
-      { pid: 0, name: 'Hamilton', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' },
-      { pid: 1, name: 'Verstappen', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' },
-      { pid: 2, name: 'Lecler', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' }
-    ],
-    2: [
-      { pid: 0, name: 'BTC', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' },
-      { pid: 1, name: 'ETH', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' },
-      { pid: 2, name: 'BNB', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' }
-    ],
-    3: [
-      { pid: 0, name: 'Donald Trump', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' },
-      { pid: 1, name: 'Joe Biden', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' }
-    ],
-    4: [
-      {
-        pid: 0,
-        name: 'Augmented Reality',
-        pair: 'DUEL/BNB LP',
-        tvl: '$101,916',
-        rewards: '8.753',
-        apr: '25.55%'
-      },
-      { pid: 1, name: 'Virtual Reality', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' }
-    ]
-  }
+  // const events = [
+  //   {
+  //     id: 0,
+  //     name: 'Premier League',
+  //     desc:
+  //       'Which team will win the FA Cup? Make your choice, join the duel by staking your farms, get higher APR when you win.'
+  //   },
+  //   {
+  //     id: 1,
+  //     name: 'Rolex Belgian Grand Prix',
+  //     desc: 'Who wins the race? Make your choice, join the duel by staking your farms, get higher APR when you win.'
+  //   },
+  //   {
+  //     id: 2,
+  //     name: 'Assets Prediction',
+  //     desc:
+  //       'Which will increase in percentage by 16th August? Make your choice, join the duel by staking your farms, get higher APR when you win.'
+  //   },
+  //   {
+  //     id: 3,
+  //     name: 'Election',
+  //     desc:
+  //       'Which one wins the election? Make your choice, join the duel by staking your farms, get higher APR when you win.'
+  //   },
+  //   {
+  //     id: 4,
+  //     name: 'User Experience',
+  //     desc:
+  //       'A company cannot decide on the structure of the application it will develop. You can help them by choosing the feature you like more. Which one do you prefer? Make your choice, join the duel by staking your farms, get higher APR when you win.'
+  //   }
+  // ]
 
-  //const dummyPair = getPairInstance(new TokenAmount(pair[0], '0'), new TokenAmount(pair[1], '0'))
+  // const pools: { [event: number]: PoolInfo[] } = {
+  //   0: [
+  //     { pid: 0, name: 'Arsenal', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' },
+  //     { pid: 1, name: 'Liverpool', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' }
+  //   ],
+  //   1: [
+  //     { pid: 0, name: 'Hamilton', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' },
+  //     { pid: 1, name: 'Verstappen', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' },
+  //     { pid: 2, name: 'Lecler', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' }
+  //   ],
+  //   2: [
+  //     { pid: 0, name: 'BTC', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' },
+  //     { pid: 1, name: 'ETH', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' },
+  //     { pid: 2, name: 'BNB', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' }
+  //   ],
+  //   3: [
+  //     { pid: 0, name: 'Donald Trump', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' },
+  //     { pid: 1, name: 'Joe Biden', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' }
+  //   ],
+  //   4: [
+  //     {
+  //       pid: 0,
+  //       name: 'Augmented Reality',
+  //       pair: 'DUEL/BNB LP',
+  //       tvl: '$101,916',
+  //       rewards: '8.753',
+  //       apr: '25.55%'
+  //     },
+  //     { pid: 1, name: 'Virtual Reality', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' }
+  //   ]
+  // }
 
-  const handleEventClick = (eventId: number): void => {
-    setActiveTab(eventId)
+  const eventInfo = useEventInfo(events[activeEvent].address)
+
+  console.log(eventInfo)
+  const userLiquidityUnstaked = useTokenBalance(account ?? undefined, eventInfo[0] && eventInfo[0].stakedAmount?.token)
+
+  const handleEventClick = (idx: number): void => {
+    setActiveEvent(idx)
   }
 
   const handlePoolClick = (pid: number): void => {
-    console.log(pid)
     setVisibleForms(prev => ({
       ...prev,
       [pid]: !prev[pid]
     }))
   }
 
-  const onUserInput = useCallback((typedValue: string) => {
-    //setSignatureData(null)
-    setTypedValue(typedValue)
-  }, [])
-
-  const onStake = () => {
-    console.log('stake')
-  }
-  const handleMax = () => {
-    console.log('max')
-  }
   return (
     <PageWrapper gap="lg" justify="center">
       <EventsContainer>
-        {events.map(event => {
+        {events.map((event, index) => {
           return (
-            <EventItem key={event.id} active={activeTab === event.id} onClick={() => handleEventClick(event.id)}>
-              {event.name}
+            <EventItem key={event.address} active={activeEvent === index} onClick={() => handleEventClick(index)}>
+              {event.title}
             </EventItem>
           )
         })}
       </EventsContainer>
       <PoolsContainer>
-        <PoolDesc>{events[activeTab].desc}</PoolDesc>
+        <PoolDesc>{events[activeEvent].desc}</PoolDesc>
         <PoolRowsContainer>
           <PoolHeaderItem>Pool</PoolHeaderItem>
           <PoolHeaderItem>TVL</PoolHeaderItem>
           <PoolHeaderItem>Rewards</PoolHeaderItem>
           <PoolHeaderItemLast>APR</PoolHeaderItemLast>
         </PoolRowsContainer>
-        {pools[activeTab].map(pool => {
+        {eventInfo.map(event => {
           return (
-            <PoolWrapper key={pool.pid} onClick={() => handlePoolClick(pool.pid)}>
-              <PoolRowsContainer>
+            <PoolWrapper key={event.pid}>
+              <PoolRowsContainer onClick={() => handlePoolClick(event.pid)}>
                 <PoolColumn>
                   <PoolNameContainer>
-                    <DoubleCurrencyLogo currency0={pair[0]} currency1={pair[1]} size={48} margin />
+                    <DoubleCurrencyLogo currency0={event.tokens[0]} currency1={event.tokens[1]} size={48} margin />
                     <PoolNameWrapper>
-                      <PoolName>{pool.name}</PoolName>
-                      <PoolPair>{pool.pair}</PoolPair>
+                      <PoolName>{event.poolTitle}</PoolName>
+                      <PoolPair>
+                        {event.tokens[0].symbol} - {event.tokens[1].symbol} LP
+                      </PoolPair>
                     </PoolNameWrapper>
                   </PoolNameContainer>
                 </PoolColumn>
-                <PoolColumn>{pool.tvl}</PoolColumn>
+                <PoolColumn>
+                  TBD
+                  {/* {event.valueOfTotalStakedAmountInUsd
+                    ? `$${event.valueOfTotalStakedAmountInUsd.toFixed(0, { groupSeparator: ',' })}`
+                    : '-'} */}
+                </PoolColumn>
                 <PoolColumnWrap>
-                  <CurrencyLogo currency={pair[1]} />
-                  <PoolRewardsAmount>{pool.rewards}</PoolRewardsAmount>
-                  <PoolRewardsText>DUEL/DAY</PoolRewardsText>
+                  <CurrencyLogo currency={event.tokens[1]} />
+                  <PoolRewardsAmount>
+                    {event.poolRewardsPerBlock.toSignificant(4, { groupSeparator: ',' })}
+                  </PoolRewardsAmount>
+                  <PoolRewardsText>DUEL/BLOCK</PoolRewardsText>
                 </PoolColumnWrap>
-                <PoolColumnLast>{pool.apr}</PoolColumnLast>
+                <PoolColumnLast>
+                  TBD
+                  {/* {event.apr && event.apr.greaterThan('0')
+                    ? `${event.apr.multiply('100').toSignificant(4, { groupSeparator: ',' })}%`
+                    : 'TBD'} */}
+                </PoolColumnLast>
               </PoolRowsContainer>
-              <StakeUnstakeContainer show={visibleForms[pool.pid]}>
+              <StakeUnstakeContainer show={visibleForms[event.pid]}>
                 <Divider />
-                <CustomRowBetween>
-                  <CurrencyInputPanel
-                    value={typedValue}
-                    onUserInput={onUserInput}
-                    onMax={handleMax}
-                    showMaxButton={true}
-                    hideBalance={true}
-                    currency={pair[1]}
-                    label={''}
-                    disableCurrencySelect={true}
-                    id="stake-liquidity-token"
+                <StakeUnstakeWrapper>
+                  <StakingComponent
+                    address={events[activeEvent].address}
+                    eventInfo={event}
+                    userLiquidityUnstaked={userLiquidityUnstaked}
                   />
-                  <CurrencyInputPanel
-                    value={typedValue}
-                    onUserInput={onUserInput}
-                    onMax={handleMax}
-                    showMaxButton={true}
-                    hideBalance={true}
-                    currency={pair[1]}
-                    label={''}
-                    disableCurrencySelect={true}
-                    id="unstake-liquidity-token"
-                  />
-                </CustomRowBetween>
-                <CustomRowBetween>
-                  <CustomButton mr="0.5rem" onClick={onStake} confirmed={false} disabled={false}>
-                    Stake
-                  </CustomButton>
-                  <CustomButtonRed mr="0.5rem" onClick={onStake} confirmed={false} disabled={false}>
-                    Unstake
-                  </CustomButtonRed>
-                </CustomRowBetween>
+                  <UnstakingComponent address={events[activeEvent].address} eventInfo={event} />
+                </StakeUnstakeWrapper>
               </StakeUnstakeContainer>
             </PoolWrapper>
           )

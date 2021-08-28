@@ -59,14 +59,14 @@ export const GOVERNANCE_TOKEN: { [chainId in ChainId]: Token } = {
   [ChainId.KOVAN]: new Token(ChainId.KOVAN, ZERO_ONE_ADDRESS, 18, 'VIPER', 'Viper'),
   [ChainId.BSC_MAINNET]: new Token(
     ChainId.BSC_MAINNET,
-    '0x4aa3b6dA6898E3770CFaaBC343AdF1de8c29b8c0',
+    '0x6ee9b76A9cDd69190b5Aad2B2F3B3fCB3471228e',
     18,
     'DUEL',
     'Duel'
   ),
   [ChainId.BSC_TESTNET]: new Token(
     ChainId.BSC_TESTNET,
-    '0x4aa3b6dA6898E3770CFaaBC343AdF1de8c29b8c0',
+    '0x6ee9b76A9cDd69190b5Aad2B2F3B3fCB3471228e',
     18,
     'DUEL',
     'Duel'
@@ -252,7 +252,7 @@ export const BTCB = new Token(
 
 export const DUEL = new Token(
   ChainId.BSC_MAINNET,
-  '0x9159F30F1c3F0317b0a2D6bC176f29266Be790eE',
+  '0x6ee9b76A9cDd69190b5Aad2B2F3B3fCB3471228e',
   18,
   'DUEL',
   'Duel Token'
