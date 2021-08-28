@@ -7,6 +7,8 @@ export interface ConfigEventInfo {
   address: string
   tokens: [Token, Token]
   active: boolean
+  startBlock: number
+  endBlock: number
   pools: ConfigEventPoolInfo[]
 }
 
@@ -24,9 +26,11 @@ export const EVENTS_INFO: {
       title: 'Premier League',
       desc:
         'Which team will win the FA Cup? Make your choice, join the duel by staking your lps to the corresponding pool, get higher APR when you win.',
-      address: '0xfa75D93384b38E48b30CcFf03cc65ED46ce1c0A2',
+      address: '0xC7Ca29d9ae3ddeD2eceCee12F17CCD144c84ef63',
       tokens: getPairTokensWithDefaults(ChainId.BSC_TESTNET, 'WBNB/DUEL'),
       active: true,
+      startBlock: 11864859,
+      endBlock: 11926059,
       pools: [
         { pid: 0, title: 'Arsenal' },
         { pid: 1, title: 'Liverpool' }
