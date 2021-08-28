@@ -18,6 +18,7 @@ import useEventPools from 'hooks/useEventPools'
 import validEventInfo from 'utils/validEventInfo'
 import useEventsConfig from 'hooks/useEventsConfig'
 import useEventPoolTitles from 'hooks/useEventPoolTitles'
+import { useBlockNumber } from 'state/application/hooks'
 
 const PAIR_INTERFACE = new Interface(IUniswapV2PairABI)
 
@@ -36,6 +37,8 @@ export interface EventInfo {
   startBlock: number
   // end block for all the rewards pools
   endBlock: number
+  // deposit end block for all the rewards pools
+  depositEndBlock: number
   // base rewards per block
   baseRewardsPerBlock: TokenAmount
   // pool specific rewards per block
@@ -62,6 +65,8 @@ export interface EventInfo {
   apr: Fraction | undefined
   // if pool is active
   active: boolean
+  // if can deposit
+  canDeposit: boolean
 }
 
 export function useEventInfo(address: string): EventInfo[] {
@@ -122,6 +127,9 @@ export function useEventInfo(address: string): EventInfo[] {
 
   const startBlock = useSingleCallResult(eventContract, 'startBlock')
   const endBlock = useSingleCallResult(eventContract, 'endBlock')
+  const depositEndBlock = useSingleCallResult(eventContract, 'depositEndBlock')
+
+  const lastBlockNumber = useBlockNumber()
 
   const baseRewards = useSingleCallResult(eventContract, 'getBaseRewardPerBlock')
   const poolRewards = useSingleContractMultipleData(
@@ -159,7 +167,8 @@ export function useEventInfo(address: string): EventInfo[] {
           lpTokenTotalSupply,
           lpTokenReserve,
           startBlock,
-          endBlock
+          endBlock,
+          depositEndBlock
         )
       ) {
         const baseBlockRewards = new TokenAmount(govToken, JSBI.BigInt(baseRewardsPerBlock?.result?.[0] ?? 0))
@@ -184,6 +193,8 @@ export function useEventInfo(address: string): EventInfo[] {
         const totalPendingRewardAmount = new TokenAmount(govToken, calculatedTotalPendingRewards)
         const startsAtBlock = startBlock.result?.[0] ?? 0
         const endsAtBlock = endBlock.result?.[0] ?? 0
+        const depositEndsAtBlock = depositEndBlock.result?.[0] ?? 0
+        const canDeposit = lastBlockNumber ? lastBlockNumber < depositEndsAtBlock : false
 
         // poolInfo: lpToken address, allocPoint uint256, lastRewardBlock uint256, accGovTokenPerShare uint256
         const poolInfoResult = poolInfo.result
@@ -217,6 +228,7 @@ export function useEventInfo(address: string): EventInfo[] {
           baseToken: baseToken,
           startBlock: startsAtBlock,
           endBlock: endsAtBlock,
+          depositEndBlock: depositEndsAtBlock,
           baseRewardsPerBlock: baseBlockRewards,
           poolRewardsPerBlock: poolBlockRewards,
           blocksPerYear: blocksPerYear,
@@ -229,7 +241,8 @@ export function useEventInfo(address: string): EventInfo[] {
           valueOfTotalStakedAmountInWeth: totalStakedAmountWETH,
           valueOfTotalStakedAmountInUsd: totalStakedAmountBUSD,
           apr: apr,
-          active: active
+          active: active,
+          canDeposit: canDeposit
         }
 
         memo.push(stakingInfo)

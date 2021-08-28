@@ -10,6 +10,7 @@ import { useEventInfo } from 'state/event/hooks'
 import StakingComponent from 'components/farm/Stake'
 import { useTokenBalance } from 'state/wallet/hooks'
 import UnstakingComponent from 'components/farm/Unstake'
+import { useBlockNumber } from 'state/application/hooks'
 //import { getPairInstance } from 'utils'
 //import useTheme from 'hooks/useTheme'
 //import { TYPE } from '../../theme'
@@ -37,11 +38,41 @@ const EventsContainer = styled(Column)`
   width: 100%;
   gap: 24px;
 `
-const EventItem = styled.div<{ active?: boolean }>`
+const EventTitleWrapper = styled.div<{ active?: boolean }>`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding-left: 8px;
   border-left: 2px solid ${({ active }) => (active ? `#fff` : 'transparent')};
   color: ${({ theme, active }) => (active ? theme.text1 : theme.text3)};
   cursor: pointer;
+`
+
+const EventTitle = styled.div<{ active?: boolean }>``
+
+const EventStatusUpcoming = styled.div`
+  font-size: 10px;
+  font-weight: 500;
+  padding: 2px 6px;
+  background-color: #4d4a2b;
+  color: #ffcc16;
+  border-radius: 4px;
+`
+const EventStatusCurrent = styled.div`
+  font-size: 10px;
+  font-weight: 500;
+  padding: 2px 6px;
+  background-color: #135626;
+  color: #09d00b;
+  border-radius: 4px;
+`
+const EventStatusFinished = styled.div`
+  font-size: 10px;
+  font-weight: 500;
+  padding: 2px 6px;
+  background-color: #4a2934;
+  color: #f53f3f;
+  border-radius: 4px;
 `
 
 const PoolsContainer = styled(Column)`
@@ -49,17 +80,22 @@ const PoolsContainer = styled(Column)`
   gap: 24px;
 `
 
+const PoolTitle = styled.div`
+  width: 100%;
+  font-size: 24px;
+  font-weight: 700;
+`
+
 const PoolDesc = styled.div`
   width: 100%;
-  padding: 20px;
-  background-color: ${({ theme }) => theme.bg1};
-  box-shadow: 0 4px 15px ${({ theme }) => theme.advancedBG};
-  border-radius: 16px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
 `
 
 const PoolRowsContainer = styled.div`
   display: grid;
-  grid-template-columns: 40% repeat(3, auto);
+  grid-template-columns: 40% repeat(4, auto);
   row-gap: 20px;
   cursor: pointer;
   user-select: none;
@@ -92,7 +128,7 @@ const PoolWrapper = styled.div`
   background-color: ${({ theme }) => theme.bg3};
   border: none;
   color: ${({ theme }) => theme.text1};
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   box-shadow: 0 4px 15px ${({ theme }) => theme.advancedBG};
 `
@@ -180,73 +216,10 @@ export default function Farm() {
 
   const events = useConfigEvents(chainId)
 
-  // const events = [
-  //   {
-  //     id: 0,
-  //     name: 'Premier League',
-  //     desc:
-  //       'Which team will win the FA Cup? Make your choice, join the duel by staking your farms, get higher APR when you win.'
-  //   },
-  //   {
-  //     id: 1,
-  //     name: 'Rolex Belgian Grand Prix',
-  //     desc: 'Who wins the race? Make your choice, join the duel by staking your farms, get higher APR when you win.'
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'Assets Prediction',
-  //     desc:
-  //       'Which will increase in percentage by 16th August? Make your choice, join the duel by staking your farms, get higher APR when you win.'
-  //   },
-  //   {
-  //     id: 3,
-  //     name: 'Election',
-  //     desc:
-  //       'Which one wins the election? Make your choice, join the duel by staking your farms, get higher APR when you win.'
-  //   },
-  //   {
-  //     id: 4,
-  //     name: 'User Experience',
-  //     desc:
-  //       'A company cannot decide on the structure of the application it will develop. You can help them by choosing the feature you like more. Which one do you prefer? Make your choice, join the duel by staking your farms, get higher APR when you win.'
-  //   }
-  // ]
-
-  // const pools: { [event: number]: PoolInfo[] } = {
-  //   0: [
-  //     { pid: 0, name: 'Arsenal', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' },
-  //     { pid: 1, name: 'Liverpool', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' }
-  //   ],
-  //   1: [
-  //     { pid: 0, name: 'Hamilton', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' },
-  //     { pid: 1, name: 'Verstappen', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' },
-  //     { pid: 2, name: 'Lecler', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' }
-  //   ],
-  //   2: [
-  //     { pid: 0, name: 'BTC', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' },
-  //     { pid: 1, name: 'ETH', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' },
-  //     { pid: 2, name: 'BNB', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' }
-  //   ],
-  //   3: [
-  //     { pid: 0, name: 'Donald Trump', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' },
-  //     { pid: 1, name: 'Joe Biden', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' }
-  //   ],
-  //   4: [
-  //     {
-  //       pid: 0,
-  //       name: 'Augmented Reality',
-  //       pair: 'DUEL/BNB LP',
-  //       tvl: '$101,916',
-  //       rewards: '8.753',
-  //       apr: '25.55%'
-  //     },
-  //     { pid: 1, name: 'Virtual Reality', pair: 'DUEL/BNB LP', tvl: '$101,916', rewards: '8.753', apr: '25.55%' }
-  //   ]
-  // }
-
   const eventInfo = useEventInfo(events[activeEvent].address)
 
-  console.log(eventInfo)
+  const lastBlockNumber = useBlockNumber()
+
   const userLiquidityUnstaked = useTokenBalance(account ?? undefined, eventInfo[0] && eventInfo[0].stakedAmount?.token)
 
   const handleEventClick = (idx: number): void => {
@@ -265,18 +238,33 @@ export default function Farm() {
       <EventsContainer>
         {events.map((event, index) => {
           return (
-            <EventItem key={event.address} active={activeEvent === index} onClick={() => handleEventClick(index)}>
-              {event.title}
-            </EventItem>
+            <EventTitleWrapper
+              key={event.address}
+              active={activeEvent === index}
+              onClick={() => handleEventClick(index)}
+            >
+              <EventTitle>{event.title}</EventTitle>
+              {lastBlockNumber && lastBlockNumber < event.startBlock && (
+                <EventStatusUpcoming>Upcoming</EventStatusUpcoming>
+              )}
+              {lastBlockNumber && lastBlockNumber >= event.startBlock && lastBlockNumber <= event.endBlock && (
+                <EventStatusCurrent>Current</EventStatusCurrent>
+              )}
+              {lastBlockNumber && lastBlockNumber > event.endBlock && (
+                <EventStatusFinished>Finished</EventStatusFinished>
+              )}
+            </EventTitleWrapper>
           )
         })}
       </EventsContainer>
       <PoolsContainer>
+        <PoolTitle>{events[activeEvent].title}</PoolTitle>
         <PoolDesc>{events[activeEvent].desc}</PoolDesc>
         <PoolRowsContainer>
           <PoolHeaderItem>Pool</PoolHeaderItem>
           <PoolHeaderItem>TVL</PoolHeaderItem>
           <PoolHeaderItem>Rewards</PoolHeaderItem>
+          <PoolHeaderItem>Earned</PoolHeaderItem>
           <PoolHeaderItemLast>APR</PoolHeaderItemLast>
         </PoolRowsContainer>
         {eventInfo.map(event => {
@@ -305,7 +293,12 @@ export default function Farm() {
                   <PoolRewardsAmount>
                     {event.poolRewardsPerBlock.toSignificant(4, { groupSeparator: ',' })}
                   </PoolRewardsAmount>
-                  <PoolRewardsText>DUEL/BLOCK</PoolRewardsText>
+                  <PoolRewardsText>DUEL/B</PoolRewardsText>
+                </PoolColumnWrap>
+
+                <PoolColumnWrap>
+                  <PoolRewardsAmount>{event.earnedAmount.toSignificant(4, { groupSeparator: ',' })}</PoolRewardsAmount>
+                  <PoolRewardsText>DUEL</PoolRewardsText>
                 </PoolColumnWrap>
                 <PoolColumnLast>
                   TBD
@@ -317,11 +310,13 @@ export default function Farm() {
               <StakeUnstakeContainer show={visibleForms[event.pid]}>
                 <Divider />
                 <StakeUnstakeWrapper>
-                  <StakingComponent
-                    address={events[activeEvent].address}
-                    eventInfo={event}
-                    userLiquidityUnstaked={userLiquidityUnstaked}
-                  />
+                  {event.canDeposit && (
+                    <StakingComponent
+                      address={events[activeEvent].address}
+                      eventInfo={event}
+                      userLiquidityUnstaked={userLiquidityUnstaked}
+                    />
+                  )}
                   <UnstakingComponent address={events[activeEvent].address} eventInfo={event} />
                 </StakeUnstakeWrapper>
               </StakeUnstakeContainer>

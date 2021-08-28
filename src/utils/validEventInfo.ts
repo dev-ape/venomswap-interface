@@ -12,7 +12,8 @@ export default function validEventInfo(
   lpTokenReserve: CallState,
   //lpTokenBalance: CallState,
   startBlock: CallState,
-  endBlock: CallState
+  endBlock: CallState,
+  depositEndBlock: CallState
 ): boolean {
   if (
     tokens &&
@@ -55,7 +56,11 @@ export default function validEventInfo(
     endBlock &&
     !endBlock.error &&
     !endBlock.loading &&
-    endBlock?.result?.[0] !== undefined
+    endBlock?.result?.[0] !== undefined &&
+    depositEndBlock &&
+    !depositEndBlock.error &&
+    !depositEndBlock.loading &&
+    depositEndBlock?.result?.[0] !== undefined
   ) {
     return true
   }
