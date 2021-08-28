@@ -7,9 +7,9 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import LogoLight from '../../assets/svg/Logo-light.svg'
-import LogoDark from '../../assets/svg/Logo-dark.svg'
+//import LogoDark from '../../assets/svg/Logo-dark.svg'
 import { useActiveWeb3React } from '../../hooks'
-import { useDarkModeManager } from '../../state/user/hooks'
+//import { useDarkModeManager } from '../../state/user/hooks'
 import { useETHBalances } from '../../state/wallet/hooks'
 import Menu from '../Menu'
 
@@ -199,14 +199,14 @@ export default function Header() {
   const { t } = useTranslation()
 
   const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
-  const [darkMode /*, toggleDarkMode*/] = useDarkModeManager()
+  //const [darkMode /*, toggleDarkMode*/] = useDarkModeManager()
 
   return (
     <HeaderFrame>
       <HeaderRow>
         <Title href=".">
           <UniIcon>
-            <img height={'48px'} src={darkMode ? LogoLight : LogoDark} alt="logo" />
+            <img height={'48px'} src={LogoLight} alt="logo" />
           </UniIcon>
         </Title>
         <HeaderLinks>
