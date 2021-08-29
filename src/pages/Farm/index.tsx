@@ -2,15 +2,17 @@ import React, { useState } from 'react'
 import Column, { AutoColumn } from '../../components/Column'
 import styled from 'styled-components'
 import { TYPE } from 'theme'
-import DoubleCurrencyLogo from 'components/DoubleLogo'
 import CurrencyLogo from 'components/CurrencyLogo'
 import { useActiveWeb3React } from 'hooks'
 import useConfigEvents from 'hooks/useEventsConfig'
-import { useEventInfo } from 'state/event/hooks'
-import StakingComponent from 'components/farm/Stake'
-import { useTokenBalance } from 'state/wallet/hooks'
-import UnstakingComponent from 'components/farm/Unstake'
 import { useBlockNumber } from 'state/application/hooks'
+import { useEventInfo } from 'state/event/hooks'
+import { useTokenBalance } from 'state/wallet/hooks'
+import StakingComponent from 'components/farm/Stake'
+import UnstakingComponent from 'components/farm/Unstake'
+import ExitComponent from 'components/farm/Exit'
+import EventPoolDoubleLogo from 'components/farm/EventPoolDoubleLogo'
+
 //import { getPairInstance } from 'utils'
 //import useTheme from 'hooks/useTheme'
 //import { TYPE } from '../../theme'
@@ -193,6 +195,14 @@ const StakeUnstakeWrapper = styled.div`
   display: flex;
   gap: 20px;
 `
+const DepositDisabled = styled.div`
+  width: 100%;
+  align-items: center;
+  display: flex;
+  text-align: center;
+  font-size: 20px;
+  padding: 6px 20px;
+`
 // const InputWrapper = styled.div`
 //   width: 100%;
 //   display: flex;
@@ -273,7 +283,10 @@ export default function Farm() {
               <PoolRowsContainer onClick={() => handlePoolClick(event.pid)}>
                 <PoolColumn>
                   <PoolNameContainer>
-                    <DoubleCurrencyLogo currency0={event.tokens[0]} currency1={event.tokens[1]} size={48} margin />
+                    <EventPoolDoubleLogo
+                      eventImg={events[activeEvent].pools[event.pid].img}
+                      eventCurrency={event.tokens[1]}
+                    />
                     <PoolNameWrapper>
                       <PoolName>{event.poolTitle}</PoolName>
                       <PoolPair>
@@ -317,6 +330,12 @@ export default function Farm() {
                       userLiquidityUnstaked={userLiquidityUnstaked}
                     />
                   )}
+                  {!event.canDeposit && !event.canExit && (
+                    <DepositDisabled>
+                      Deposit deadline time has passed. Please wait until the end of the event.
+                    </DepositDisabled>
+                  )}
+                  {event.canExit && <ExitComponent address={events[activeEvent].address} eventInfo={event} />}
                   <UnstakingComponent address={events[activeEvent].address} eventInfo={event} />
                 </StakeUnstakeWrapper>
               </StakeUnstakeContainer>

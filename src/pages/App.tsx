@@ -11,13 +11,14 @@ import Web3ReactManager from '../components/Web3ReactManager'
 import { ApplicationModal } from '../state/application/actions'
 import { useModalOpen, useToggleModal } from '../state/application/hooks'
 import DarkModeQueryParamReader from '../theme/DarkModeQueryParamReader'
-import Earn from './Earn'
-import EarnArchived from './Earn/Archived'
+// import Earn from './Earn'
+// import EarnArchived from './Earn/Archived'
 import Swap from './Swap'
 import { RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
 import usePlatformName from '../hooks/usePlatformName'
-import Manage from './Earn/Manage'
+// import Manage from './Earn/Manage'
 import Farm from './Farm'
+import Soon from './Soon'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -85,9 +86,10 @@ export default function App() {
               <Route exact strict path="/swap" component={Swap} />
               <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
               <Route exact strict path="/farm" component={Farm} />
-              <Route exact strict path="/staking" component={Earn} />
+              <Route exact strict path="/soon" component={Soon} />
+              {/* <Route exact strict path="/staking" component={Earn} />
               <Route exact strict path="/staking/archived" component={EarnArchived} />
-              <Route exact strict path="/staking/:currencyIdA/:currencyIdB" component={Manage} />
+              <Route exact strict path="/staking/:currencyIdA/:currencyIdB" component={Manage} /> */}
               <Route component={RedirectPathToSwapOnly} />
             </Switch>
           </Web3ReactManager>

@@ -67,6 +67,15 @@ export interface EventInfo {
   active: boolean
   // if can deposit
   canDeposit: boolean
+  // if can exit
+  canExit: boolean
+}
+
+enum EventStatus {
+  Active,
+  Win,
+  Draw,
+  Cancel
 }
 
 export function useEventInfo(address: string): EventInfo[] {
@@ -128,6 +137,7 @@ export function useEventInfo(address: string): EventInfo[] {
   const startBlock = useSingleCallResult(eventContract, 'startBlock')
   const endBlock = useSingleCallResult(eventContract, 'endBlock')
   const depositEndBlock = useSingleCallResult(eventContract, 'depositEndBlock')
+  const eventResult = useSingleCallResult(eventContract, 'eventResult')
 
   const lastBlockNumber = useBlockNumber()
 
@@ -195,6 +205,10 @@ export function useEventInfo(address: string): EventInfo[] {
         const endsAtBlock = endBlock.result?.[0] ?? 0
         const depositEndsAtBlock = depositEndBlock.result?.[0] ?? 0
         const canDeposit = lastBlockNumber ? lastBlockNumber < depositEndsAtBlock : false
+        const canExit = eventResult.result?.[0] != EventStatus.Active
+
+        // console.log('last', lastBlockNumber)
+        // console.log('ends', endsAtBlock.toNumber())
 
         // poolInfo: lpToken address, allocPoint uint256, lastRewardBlock uint256, accGovTokenPerShare uint256
         const poolInfoResult = poolInfo.result
@@ -242,7 +256,8 @@ export function useEventInfo(address: string): EventInfo[] {
           valueOfTotalStakedAmountInUsd: totalStakedAmountBUSD,
           apr: apr,
           active: active,
-          canDeposit: canDeposit
+          canDeposit: canDeposit,
+          canExit: canExit
         }
 
         memo.push(stakingInfo)
@@ -265,7 +280,9 @@ export function useEventInfo(address: string): EventInfo[] {
     lpTokenSupplies,
     blocksPerYear,
     startBlock,
-    endBlock
+    endBlock,
+    depositEndBlock,
+    eventResult
   ])
 }
 
