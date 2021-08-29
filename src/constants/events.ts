@@ -15,6 +15,7 @@ export interface ConfigEventInfo {
 export interface ConfigEventPoolInfo {
   pid: number
   title: string
+  img: string
 }
 
 export const EVENTS_INFO: {
@@ -32,8 +33,8 @@ export const EVENTS_INFO: {
       startBlock: 11864859,
       endBlock: 11926059,
       pools: [
-        { pid: 0, title: 'Arsenal' },
-        { pid: 1, title: 'Liverpool' }
+        { pid: 0, title: 'Arsenal', img: '/images/events/arsenal.png' },
+        { pid: 1, title: 'Liverpool', img: '/images/events/liverpool.png' }
       ]
     }
   ]
