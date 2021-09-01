@@ -9,7 +9,7 @@ import getTokenWithDefault from '../utils/getTokenWithDefault'
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 export const ZERO_ONE_ADDRESS = '0x0000000000000000000000000000000000000001'
 
-export const LUQIDITY_ADD_URI = 'https://app.apeswap.finance'
+export const LUQIDITY_ADD_URI = 'https://pancakeswap.finance/liquidity'
 
 export const ROUTER_ADDRESSES: { [chainId in ChainId]: string } = {
   [ChainId.MAINNET]: ZERO_ONE_ADDRESS,
@@ -17,7 +17,7 @@ export const ROUTER_ADDRESSES: { [chainId in ChainId]: string } = {
   [ChainId.RINKEBY]: ZERO_ONE_ADDRESS,
   [ChainId.GÖRLI]: ZERO_ONE_ADDRESS,
   [ChainId.KOVAN]: ZERO_ONE_ADDRESS,
-  [ChainId.BSC_MAINNET]: '0xcF0feBd3f17CEf5b47b0cD257aCf6025c5BFf3b7',
+  [ChainId.BSC_MAINNET]: '0x10ED43C718714eb63d5aA57B78B54704E256024E',
   [ChainId.BSC_TESTNET]: '0xD99D1c33F9fC3444f8101754aBC46c52416550D1',
   [ChainId.HARMONY_MAINNET]: '0xD99D1c33F9fC3444f8101754aBC46c52416550D1',
   [ChainId.HARMONY_TESTNET]: '0xD99D1c33F9fC3444f8101754aBC46c52416550D1'
@@ -29,7 +29,7 @@ export const FACTORY_ADDRESSES: { [chainId in ChainId]: string } = {
   [ChainId.RINKEBY]: ZERO_ONE_ADDRESS,
   [ChainId.GÖRLI]: ZERO_ONE_ADDRESS,
   [ChainId.KOVAN]: ZERO_ONE_ADDRESS,
-  [ChainId.BSC_MAINNET]: '0x0841BD0B734E4F5853f0dD8d7Ea041c241fb0Da6',
+  [ChainId.BSC_MAINNET]: '0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73',
   [ChainId.BSC_TESTNET]: '0x6725F303b657a9451d8BA641348b6761A6CC7a17',
   [ChainId.HARMONY_MAINNET]: '0x6725F303b657a9451d8BA641348b6761A6CC7a17',
   [ChainId.HARMONY_TESTNET]: '0x6725F303b657a9451d8BA641348b6761A6CC7a17'
@@ -41,7 +41,7 @@ export const INIT_CODE_HASH: { [chainId in ChainId]: string } = {
   [ChainId.RINKEBY]: ZERO_ONE_ADDRESS,
   [ChainId.GÖRLI]: ZERO_ONE_ADDRESS,
   [ChainId.KOVAN]: ZERO_ONE_ADDRESS,
-  [ChainId.BSC_MAINNET]: '0xf4ccce374816856d11f00e4069e7cada164065686fbef53c6167a63ec2fd8c5b',
+  [ChainId.BSC_MAINNET]: '0x00fb7f630766e6a796048ea87d01acd3068e8ff67d078148a3fa3f4a84f69bd5',
   [ChainId.BSC_TESTNET]: '0xd0d4c4cd0848c93cb4fd1f498d7013ee6bfb25783ea21593d5834f5d250ece66',
   [ChainId.HARMONY_MAINNET]: ZERO_ONE_ADDRESS,
   [ChainId.HARMONY_TESTNET]: ZERO_ONE_ADDRESS
@@ -59,7 +59,7 @@ export const GOVERNANCE_TOKEN: { [chainId in ChainId]: Token } = {
   [ChainId.KOVAN]: new Token(ChainId.KOVAN, ZERO_ONE_ADDRESS, 18, 'VIPER', 'Viper'),
   [ChainId.BSC_MAINNET]: new Token(
     ChainId.BSC_MAINNET,
-    '0x6ee9b76A9cDd69190b5Aad2B2F3B3fCB3471228e',
+    '0x297817CE1a8De777e7ddbed86C3B7f9Dc9349f2c',
     18,
     'DUEL',
     'Duel'
@@ -252,7 +252,7 @@ export const BTCB = new Token(
 
 export const DUEL = new Token(
   ChainId.BSC_MAINNET,
-  '0x6ee9b76A9cDd69190b5Aad2B2F3B3fCB3471228e',
+  '0x297817CE1a8De777e7ddbed86C3B7f9Dc9349f2c',
   18,
   'DUEL',
   'Duel Token'
