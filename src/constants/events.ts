@@ -37,7 +37,7 @@ export const EVENTS_INFO: {
         { pid: 0, title: 'BTC HIGHER', img1: '/images/events/btc.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: 'BTC LOWER', img1: '/images/events/btc.png', img2: '/images/events/duel_dark.png' }
       ]
-    },    
+    },
     {
       title: 'BTC Price Guess',
       desc:
