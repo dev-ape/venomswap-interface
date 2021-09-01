@@ -69,6 +69,12 @@ export interface EventInfo {
   canDeposit: boolean
   // if can exit
   canExit: boolean
+  // if claimed
+  isClaimed: boolean
+  // if event cancelled
+  isCancelled: boolean
+  // if lost pool
+  isLost: boolean
 }
 
 enum EventStatus {
@@ -205,8 +211,16 @@ export function useEventInfo(address: string): EventInfo[] {
         const endsAtBlock = endBlock.result?.[0] ?? 0
         const depositEndsAtBlock = depositEndBlock.result?.[0] ?? 0
         const canDeposit = lastBlockNumber ? lastBlockNumber < depositEndsAtBlock : false
-        const canExit = eventResult.result?.[0] != EventStatus.Active
+        const canExit =
+          eventResult.result?.status == EventStatus.Draw ||
+          eventResult.result?.status == EventStatus.Cancel ||
+          (eventResult.result?.status == EventStatus.Win && eventResult.result?.winnerPid == pid)
 
+        const isClaimed = userInfo?.result?.claimed
+        const isCancelled = eventResult.result?.status == EventStatus.Cancel
+        const isLost = eventResult.result?.status == EventStatus.Win && eventResult.result?.winnerPid != pid
+
+        //console.log('userInfo', userInfo)
         // console.log('last', lastBlockNumber)
         // console.log('ends', endsAtBlock.toNumber())
 
@@ -257,7 +271,10 @@ export function useEventInfo(address: string): EventInfo[] {
           apr: apr,
           active: active,
           canDeposit: canDeposit,
-          canExit: canExit
+          canExit: canExit,
+          isClaimed: isClaimed,
+          isCancelled: isCancelled,
+          isLost: isLost
         }
 
         memo.push(stakingInfo)

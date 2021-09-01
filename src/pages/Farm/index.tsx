@@ -195,7 +195,7 @@ const StakeUnstakeWrapper = styled.div`
   display: flex;
   gap: 20px;
 `
-const DepositDisabled = styled.div`
+const TextWrapper = styled.div`
   width: 100%;
   align-items: center;
   display: flex;
@@ -284,8 +284,8 @@ export default function Farm() {
                 <PoolColumn>
                   <PoolNameContainer>
                     <EventPoolDoubleLogo
-                      eventImg={events[activeEvent].pools[event.pid].img}
-                      eventCurrency={event.tokens[1]}
+                      eventImg1={events[activeEvent].pools[event.pid].img1}
+                      eventImg2={events[activeEvent].pools[event.pid].img2}
                     />
                     <PoolNameWrapper>
                       <PoolName>{event.poolTitle}</PoolName>
@@ -330,12 +330,26 @@ export default function Farm() {
                       userLiquidityUnstaked={userLiquidityUnstaked}
                     />
                   )}
-                  {!event.canDeposit && !event.canExit && (
-                    <DepositDisabled>
-                      Deposit deadline time has passed. Please wait until the end of the event.
-                    </DepositDisabled>
+                  {!event.canDeposit && !event.canExit && !event.isLost && !event.isCancelled && (
+                    <TextWrapper>Deposit deadline time has passed. Please wait until the end of the event.</TextWrapper>
                   )}
-                  {event.canExit && <ExitComponent address={events[activeEvent].address} eventInfo={event} />}
+                  {!event.canDeposit && event.canExit && !event.isClaimed && !event.isCancelled && (
+                    <ExitComponent address={events[activeEvent].address} eventInfo={event} />
+                  )}
+                  {!event.canDeposit && event.canExit && event.isClaimed && !event.isCancelled && (
+                    <TextWrapper>You have successfully claimed your rewards!</TextWrapper>
+                  )}
+                  {!event.canDeposit && !event.canExit && event.isLost && !event.isCancelled && (
+                    <TextWrapper>
+                      Unfortunately this pool has lost, you can participate in the upcoming events!
+                    </TextWrapper>
+                  )}
+                  {event.isCancelled && (
+                    <TextWrapper>
+                      This event has been cancelled, please withdraw your LPs and join another event!
+                    </TextWrapper>
+                  )}
+
                   <UnstakingComponent address={events[activeEvent].address} eventInfo={event} />
                 </StakeUnstakeWrapper>
               </StakeUnstakeContainer>

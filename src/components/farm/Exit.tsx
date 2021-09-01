@@ -59,9 +59,9 @@ export default function ExitComponent({ address, eventInfo }: ExitProps) {
   const [attempting, setAttempting] = useState<boolean>(false)
   const [hash, setHash] = useState<string | undefined>()
   const [failed, setFailed] = useState<boolean>(false)
-  const [error, setError] = useState<string | undefined>(undefined)
+  const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined)
   const wrappedOnDismiss = useCallback(() => {
-    setError(undefined)
+    setErrorMessage(undefined)
     setHash(undefined)
     setAttempting(false)
     setFailed(false)
@@ -90,6 +90,7 @@ export default function ExitComponent({ address, eventInfo }: ExitProps) {
           setAttempting(false)
           if (error?.code === -32603) {
             setFailed(true)
+            setErrorMessage(error.data.message)
           }
           console.log(error)
         })
@@ -104,8 +105,13 @@ export default function ExitComponent({ address, eventInfo }: ExitProps) {
             <RewardAmount>{eventInfo?.earnedAmount.toSignificant(4, { groupSeparator: ',' })}</RewardAmount>
             <RewardText>DUEL</RewardText>
           </RewardWrapper>
-          <ButtonErrorWrapper disabled={!!error} show={true} error={!!error} onClick={onExit}>
-            {error ?? 'Claim & Exit'}
+          <ButtonErrorWrapper
+            disabled={eventInfo?.earnedAmount.equalTo('0')}
+            show={true}
+            error={!!errorMessage}
+            onClick={onExit}
+          >
+            {errorMessage ?? 'Claim & Exit'}
           </ButtonErrorWrapper>
         </InputWrapper>
       )}

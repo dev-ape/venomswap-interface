@@ -1,7 +1,5 @@
 import React from 'react'
-import { Currency } from '@venomswap/sdk'
 import styled from 'styled-components'
-import CurrencyLogo from '../CurrencyLogo'
 
 const Wrapper = styled.div<{ margin: boolean; sizeraw: number }>`
   position: relative;
@@ -12,8 +10,8 @@ const Wrapper = styled.div<{ margin: boolean; sizeraw: number }>`
 `
 
 interface EventLogoProps {
-  eventImg: string
-  eventCurrency: Currency
+  eventImg1: string
+  eventImg2: string
 }
 
 const StyledLogo = styled.img<{ size: string }>`
@@ -25,16 +23,12 @@ const StyledLogo = styled.img<{ size: string }>`
 const HigherLogo = styled(StyledLogo)`
   z-index: 2;
 `
-const CoveredLogo = styled(CurrencyLogo)<{ sizeraw: number }>`
-  position: absolute;
-  left: ${({ sizeraw }) => '-' + (sizeraw / 2).toString() + 'px'} !important;
-`
 
-export default function EventPoolDoubleLogo({ eventImg, eventCurrency }: EventLogoProps) {
+export default function EventPoolDoubleLogo({ eventImg1, eventImg2 }: EventLogoProps) {
   return (
     <Wrapper sizeraw={16} margin={true}>
-      {eventImg && <HigherLogo src={eventImg} size={'48px'} />}
-      {eventCurrency && <CoveredLogo currency={eventCurrency} size={'48px'} sizeraw={48} />}
+      {eventImg1 && <HigherLogo src={eventImg1} size={'48px'} />}
+      {eventImg2 && <HigherLogo src={eventImg2} size={'48px'} />}
     </Wrapper>
   )
 }
