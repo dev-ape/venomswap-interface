@@ -28,7 +28,7 @@ export const EVENTS_INFO: {
       title: 'BTC Price Guess',
       desc:
         'You win if you correctly guess the price of BTC. Will it be higher or lower then $45,000 USD at 7 September 23:59 UTC?',
-      address: '0x9f02A48BdB15A028ae34B3a22BE06Ac1EbA006e5',
+      address: '0xec3668eDBa2aaf358A98765a4eb2e4fc0206E366',
       tokens: getPairTokensWithDefaults(ChainId.BSC_TESTNET, 'WBNB/DUEL'),
       active: true,
       startBlock: 11999179,
@@ -42,7 +42,7 @@ export const EVENTS_INFO: {
       title: 'BTC Price Guess',
       desc:
         'You win if you correctly guess the price of BTC. Will it be higher or lower then $45,000 USD at 7 September 23:59 UTC?',
-      address: '0x9f02A48BdB15A028ae34B3a22BE06Ac1EbA006e5',
+      address: '0xec3668eDBa2aaf358A98765a4eb2e4fc0206E366',
       tokens: getPairTokensWithDefaults(ChainId.BSC_TESTNET, 'WBNB/DUEL'),
       active: true,
       startBlock: 11986650,
@@ -56,7 +56,7 @@ export const EVENTS_INFO: {
       title: 'BTC Price Guess',
       desc:
         'You win if you correctly guess the price of BTC. Will it be higher or lower then $45,000 USD at 7 September 23:59 UTC?',
-      address: '0xE62D415D125c0b2F416130E234ed1Ce815F82d08',
+      address: '0xec3668eDBa2aaf358A98765a4eb2e4fc0206E366',
       tokens: getPairTokensWithDefaults(ChainId.BSC_TESTNET, 'WBNB/DUEL'),
       active: true,
       startBlock: 11986250,
