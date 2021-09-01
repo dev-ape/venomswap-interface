@@ -31,8 +31,8 @@ export const EVENTS_INFO: {
       address: '0xec3668eDBa2aaf358A98765a4eb2e4fc0206E366',
       tokens: getPairTokensWithDefaults(ChainId.BSC_TESTNET, 'WBNB/DUEL'),
       active: true,
-      startBlock: 11999179,
-      endBlock: 11999579,
+      startBlock: 12000141,
+      endBlock: 12000541,
       pools: [
         { pid: 0, title: 'BTC HIGHER', img1: '/images/events/btc.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: 'BTC LOWER', img1: '/images/events/btc.png', img2: '/images/events/duel_dark.png' }
@@ -45,8 +45,8 @@ export const EVENTS_INFO: {
       address: '0xec3668eDBa2aaf358A98765a4eb2e4fc0206E366',
       tokens: getPairTokensWithDefaults(ChainId.BSC_TESTNET, 'WBNB/DUEL'),
       active: true,
-      startBlock: 11986650,
-      endBlock: 11987850,
+      startBlock: 12000141,
+      endBlock: 12000541,
       pools: [
         { pid: 0, title: 'BTC HIGHER', img1: '/images/events/btc.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: 'BTC LOWER', img1: '/images/events/btc.png', img2: '/images/events/duel_dark.png' }
@@ -59,8 +59,8 @@ export const EVENTS_INFO: {
       address: '0xec3668eDBa2aaf358A98765a4eb2e4fc0206E366',
       tokens: getPairTokensWithDefaults(ChainId.BSC_TESTNET, 'WBNB/DUEL'),
       active: true,
-      startBlock: 11986250,
-      endBlock: 11986650,
+      startBlock: 12000141,
+      endBlock: 12000541,
       pools: [
         { pid: 0, title: 'BTC HIGHER', img1: '/images/events/btc.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: 'BTC LOWER', img1: '/images/events/btc.png', img2: '/images/events/duel_dark.png' }
