@@ -113,11 +113,11 @@ export default function Menu() {
             <PieChart size={14} />
             Analytics
           </MenuItem>
-          <MenuItem id="link" href="https://docs.hepa.finance/">
+          <MenuItem id="link" href="http://docs.duel.network">
             <BookOpen size={14} />
             Docs
           </MenuItem>
-          <MenuItem id="link" href="http://T.me/hepafinance">
+          <MenuItem id="link" href="http://t.me/duelnetwork_chat">
             <Send size={14} />
             Telegram
           </MenuItem>
