@@ -67,6 +67,20 @@ export const EVENTS_INFO: {
       ]
     },
     {
+      title: 'BTC Price Guess',
+      desc:
+        'You win if you correctly guess the price of BTC. Will it be higher or lower then $45,000 USD at 7 September 23:59 UTC?',
+      address: '0x9f02A48BdB15A028ae34B3a22BE06Ac1EbA006e5',
+      tokens: getPairTokensWithDefaults(ChainId.BSC_TESTNET, 'WBNB/DUEL'),
+      active: true,
+      startBlock: 11999179,
+      endBlock: 11999579,
+      pools: [
+        { pid: 0, title: 'BTC HIGHER', img1: '/images/events/btc.png', img2: '/images/events/duel_dark.png' },
+        { pid: 1, title: 'BTC LOWER', img1: '/images/events/btc.png', img2: '/images/events/duel_dark.png' }
+      ]
+    },
+    {
       title: 'Premier League',
       desc:
         'Which team will win the FA Cup? Make your choice, join the duel by staking your lps to the corresponding pool, get higher APR when you win.',
