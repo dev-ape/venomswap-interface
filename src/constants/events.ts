@@ -28,11 +28,11 @@ export const EVENTS_INFO: {
       title: 'BTC Price Guess',
       desc:
         'You win if you correctly guess the price of BTC. Will it be higher or lower then $45,000 USD at 7 September 23:59 UTC?',
-      address: '0x31A76c98813599ac25f231fE405C10478163d792',
+      address: '0x3188D15459EC9C3E914B8e1E6DEB76CdF4Cf5836',
       tokens: getPairTokensWithDefaults(ChainId.BSC_TESTNET, 'WBNB/DUEL'),
       active: true,
-      startBlock: 12012263,
-      endBlock: 12012463,
+      startBlock: 12012840,
+      endBlock: 12013240,
       pools: [
         { pid: 0, title: 'BTC HIGHER', img1: '/images/events/btc.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: 'BTC LOWER', img1: '/images/events/btc.png', img2: '/images/events/duel_dark.png' }
