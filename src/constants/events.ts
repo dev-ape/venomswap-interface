@@ -31,8 +31,8 @@ export const EVENTS_INFO: {
       address: '0x31A76c98813599ac25f231fE405C10478163d792',
       tokens: getPairTokensWithDefaults(ChainId.BSC_TESTNET, 'WBNB/DUEL'),
       active: true,
-      startBlock: 12011166,
-      endBlock: 12011366,
+      startBlock: 12012263,
+      endBlock: 12012463,
       pools: [
         { pid: 0, title: 'BTC HIGHER', img1: '/images/events/btc.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: 'BTC LOWER', img1: '/images/events/btc.png', img2: '/images/events/duel_dark.png' }
