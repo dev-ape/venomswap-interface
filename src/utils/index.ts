@@ -165,8 +165,8 @@ export function getPairInstance(tokenAmountA: TokenAmount, tokenAmountB: TokenAm
       tokenAmountA.token.chainId,
       getPairAddress(tokenAmountA.token, tokenAmountB.token),
       18,
-      'APE-LP',
-      'Apeswap LP Token'
+      'CAKE-LP',
+      'Pancake LPs'
     )
   })
   return pair
