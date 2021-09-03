@@ -22,7 +22,22 @@ export interface ConfigEventPoolInfo {
 export const EVENTS_INFO: {
   [chainId in ChainId]?: ConfigEventInfo[]
 } = {
-  [ChainId.BSC_MAINNET]: [],
+  [ChainId.BSC_MAINNET]: [
+    {
+      title: 'BTC Price Guess',
+      desc:
+        'You win if you correctly guess the price of BTC. Will it be higher or lower then $45,000 USD at 7 September 23:59 UTC?',
+      address: '0x12B75625618B6e7c473a1284B3209ec0b66A9f45',
+      tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
+      active: true,
+      startBlock: 10595531,
+      endBlock: 10596731,
+      pools: [
+        { pid: 0, title: 'BTC HIGHER', img1: '/images/events/btc.png', img2: '/images/events/duel_dark.png' },
+        { pid: 1, title: 'BTC LOWER', img1: '/images/events/btc.png', img2: '/images/events/duel_dark.png' }
+      ]
+    }
+  ],
   [ChainId.BSC_TESTNET]: [
     {
       title: 'BTC Price Guess',
