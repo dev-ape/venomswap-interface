@@ -120,7 +120,7 @@ export function useEventInfo(address: string): EventInfo[] {
   const lpTokenAddresses = useMemo(() => {
     return poolInfos.reduce<string[]>((memo, poolInfo) => {
       if (poolInfo && !poolInfo.loading && poolInfo.result) {
-        const [lpToken] = poolInfo.result
+        const { lpToken } = poolInfo.result
         memo.push(lpToken)
       }
       return memo
@@ -130,7 +130,7 @@ export function useEventInfo(address: string): EventInfo[] {
   const lpTokenSupplies = useMemo(() => {
     return poolInfos.reduce<string[]>((memo, poolInfo) => {
       if (poolInfo && !poolInfo.loading && poolInfo.result) {
-        const [supply] = poolInfo.result
+        const { supply } = poolInfo.result
         memo.push(supply)
       }
       return memo
@@ -219,10 +219,6 @@ export function useEventInfo(address: string): EventInfo[] {
         const isClaimed = userInfo?.result?.claimed
         const isCancelled = eventResult.result?.status == EventStatus.Cancel
         const isLost = eventResult.result?.status == EventStatus.Win && eventResult.result?.winnerPid != pid
-
-        //console.log('userInfo', userInfo)
-        // console.log('last', lastBlockNumber)
-        // console.log('ends', endsAtBlock.toNumber())
 
         // poolInfo: lpToken address, allocPoint uint256, lastRewardBlock uint256, accGovTokenPerShare uint256
         const poolInfoResult = poolInfo.result

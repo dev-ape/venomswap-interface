@@ -296,10 +296,9 @@ export default function Farm() {
                   </PoolNameContainer>
                 </PoolColumn>
                 <PoolColumn>
-                  TBD
-                  {/* {event.valueOfTotalStakedAmountInUsd
+                  {event.valueOfTotalStakedAmountInUsd
                     ? `$${event.valueOfTotalStakedAmountInUsd.toFixed(0, { groupSeparator: ',' })}`
-                    : '-'} */}
+                    : '-'}
                 </PoolColumn>
                 <PoolColumnWrap>
                   <CurrencyLogo currency={event.tokens[1]} />
@@ -314,10 +313,9 @@ export default function Farm() {
                   <PoolRewardsText>DUEL</PoolRewardsText>
                 </PoolColumnWrap>
                 <PoolColumnLast>
-                  TBD
-                  {/* {event.apr && event.apr.greaterThan('0')
+                  {event.apr && event.apr.greaterThan('0')
                     ? `${event.apr.multiply('100').toSignificant(4, { groupSeparator: ',' })}%`
-                    : 'TBD'} */}
+                    : 'TBD'}
                 </PoolColumnLast>
               </PoolRowsContainer>
               <StakeUnstakeContainer show={visibleForms[event.pid]}>
