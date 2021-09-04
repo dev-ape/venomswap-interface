@@ -9,7 +9,8 @@ import { useBlockNumber } from 'state/application/hooks'
 import { useEventInfo } from 'state/event/hooks'
 import { useTokenBalance } from 'state/wallet/hooks'
 import StakingComponent from 'components/farm/Stake'
-import UnstakingComponent from 'components/farm/Unstake'
+//import UnstakingComponent from 'components/farm/Unstake'
+import EmergencyComponent from 'components/farm/Emergency'
 import ExitComponent from 'components/farm/Exit'
 import EventPoolDoubleLogo from 'components/farm/EventPoolDoubleLogo'
 
@@ -371,7 +372,8 @@ export default function Farm() {
                     </TextWrapper>
                   )}
 
-                  <UnstakingComponent address={events[activeEvent].address} eventInfo={event} />
+                  {/* <UnstakingComponent address={events[activeEvent].address} eventInfo={event} /> */}
+                  <EmergencyComponent address={events[activeEvent].address} eventInfo={event} />
                 </StakeUnstakeWrapper>
               </StakeUnstakeContainer>
             </PoolWrapper>
