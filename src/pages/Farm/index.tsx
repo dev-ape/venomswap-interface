@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Column, { AutoColumn } from '../../components/Column'
 import styled from 'styled-components'
-import { TYPE } from 'theme'
+import { HideSmall, TYPE } from 'theme'
 import CurrencyLogo from 'components/CurrencyLogo'
 import { useActiveWeb3React } from 'hooks'
 import useConfigEvents from 'hooks/useEventsConfig'
@@ -53,8 +53,8 @@ const EventTitleWrapper = styled.div<{ active?: boolean }>`
   color: ${({ theme, active }) => (active ? theme.text1 : theme.text3)};
   cursor: pointer;
   ${({ theme }) => theme.mediaWidth.upToMedium`
-    justify-content: space-evenly;
-    border-left: none;
+    justify-content: flex-start;
+    gap: 20px;
   `};
 `
 
@@ -202,6 +202,9 @@ const Divider = styled.hr`
 const StakeUnstakeWrapper = styled.div`
   display: flex;
   gap: 20px;
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    flex-direction: column;
+  `};
 `
 const TextWrapper = styled.div`
   width: 100%;
@@ -211,6 +214,11 @@ const TextWrapper = styled.div`
   font-size: 20px;
   padding: 6px 20px;
 `
+
+const HideSmallFlex = styled(HideSmall)`
+  display: flex;
+`
+
 // const InputWrapper = styled.div`
 //   width: 100%;
 //   display: flex;
@@ -281,7 +289,9 @@ export default function Farm() {
         <PoolRowsContainer>
           <PoolHeaderItem>Pool</PoolHeaderItem>
           <PoolHeaderItem>TVL</PoolHeaderItem>
-          <PoolHeaderItem>Rewards</PoolHeaderItem>
+          <HideSmallFlex>
+            <PoolHeaderItem>Rewards</PoolHeaderItem>
+          </HideSmallFlex>
           <PoolHeaderItem>Earned</PoolHeaderItem>
           <PoolHeaderItemLast>APR</PoolHeaderItemLast>
         </PoolRowsContainer>
@@ -291,10 +301,13 @@ export default function Farm() {
               <PoolRowsContainer onClick={() => handlePoolClick(event.pid)}>
                 <PoolColumn>
                   <PoolNameContainer>
-                    <EventPoolDoubleLogo
-                      eventImg1={events[activeEvent].pools[event.pid].img1}
-                      eventImg2={events[activeEvent].pools[event.pid].img2}
-                    />
+                    <HideSmallFlex>
+                      <EventPoolDoubleLogo
+                        eventImg1={events[activeEvent].pools[event.pid].img1}
+                        eventImg2={events[activeEvent].pools[event.pid].img2}
+                      />
+                    </HideSmallFlex>
+
                     <PoolNameWrapper>
                       <PoolName>{event.poolTitle}</PoolName>
                       <PoolPair>
@@ -308,13 +321,15 @@ export default function Farm() {
                     ? `$${event.valueOfTotalStakedAmountInUsd.toFixed(0, { groupSeparator: ',' })}`
                     : '-'}
                 </PoolColumn>
-                <PoolColumnWrap>
-                  <CurrencyLogo currency={event.tokens[1]} />
-                  <PoolRewardsAmount>
-                    {event.poolRewardsPerBlock.toSignificant(4, { groupSeparator: ',' })}
-                  </PoolRewardsAmount>
-                  <PoolRewardsText>DUEL/B</PoolRewardsText>
-                </PoolColumnWrap>
+                <HideSmallFlex>
+                  <PoolColumnWrap>
+                    <CurrencyLogo currency={event.tokens[1]} />
+                    <PoolRewardsAmount>
+                      {event.poolRewardsPerBlock.toSignificant(4, { groupSeparator: ',' })}
+                    </PoolRewardsAmount>
+                    <PoolRewardsText>DUEL/B</PoolRewardsText>
+                  </PoolColumnWrap>
+                </HideSmallFlex>
 
                 <PoolColumnWrap>
                   <PoolRewardsAmount>{event.earnedAmount.toSignificant(4, { groupSeparator: ',' })}</PoolRewardsAmount>
