@@ -34,6 +34,10 @@ const PageWrapper = styled(AutoColumn)`
   width: 100%;
   grid-template-columns: 200px 720px;
   grid-column-gap: 24px;
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+  `};
 `
 
 const EventsContainer = styled(Column)`
@@ -48,6 +52,10 @@ const EventTitleWrapper = styled.div<{ active?: boolean }>`
   border-left: 2px solid ${({ active }) => (active ? `#fff` : 'transparent')};
   color: ${({ theme, active }) => (active ? theme.text1 : theme.text3)};
   cursor: pointer;
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+    justify-content: space-evenly;
+    border-left: none;
+  `};
 `
 
 const EventTitle = styled.div<{ active?: boolean }>``
