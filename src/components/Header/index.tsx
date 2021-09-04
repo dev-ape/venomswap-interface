@@ -219,7 +219,7 @@ export default function Header() {
           <StyledNavLink id={`stake-nav-link`} to={'/soon'}>
             Stake
           </StyledNavLink>
-          <StyledNavLink id={`challenges-nav-link`} to={'/soon'}>
+          <StyledNavLink id={`challenges-nav-link`} to={'/challenge'}>
             Challenges NFT
           </StyledNavLink>
         </HeaderLinks>

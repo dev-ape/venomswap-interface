@@ -30,12 +30,12 @@ const BlurWrapper = styled.div`
 const Title = styled.div`
   color: #e52421;
 `
-export default function Soon() {
+export default function Challenge() {
   return (
     <BlurContainer>
       <BlurWrapper>
         <Title>
-          <TYPE.largeHeader>Staking DUEL</TYPE.largeHeader>
+          <TYPE.largeHeader>Challenges NFT</TYPE.largeHeader>
         </Title>
         <TYPE.mediumHeader>Coming Soon</TYPE.mediumHeader>
       </BlurWrapper>
