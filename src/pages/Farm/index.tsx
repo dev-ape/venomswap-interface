@@ -13,6 +13,7 @@ import StakingComponent from 'components/farm/Stake'
 import EmergencyComponent from 'components/farm/Emergency'
 import ExitComponent from 'components/farm/Exit'
 import EventPoolDoubleLogo from 'components/farm/EventPoolDoubleLogo'
+import UnstakingComponent from 'components/farm/Unstake'
 
 //import { getPairInstance } from 'utils'
 //import useTheme from 'hooks/useTheme'
@@ -372,8 +373,12 @@ export default function Farm() {
                     </TextWrapper>
                   )}
 
-                  {/* <UnstakingComponent address={events[activeEvent].address} eventInfo={event} /> */}
-                  <EmergencyComponent address={events[activeEvent].address} eventInfo={event} />
+                  {events[activeEvent].active && (
+                    <UnstakingComponent address={events[activeEvent].address} eventInfo={event} />
+                  )}
+                  {!events[activeEvent].active && (
+                    <EmergencyComponent address={events[activeEvent].address} eventInfo={event} />
+                  )}
                 </StakeUnstakeWrapper>
               </StakeUnstakeContainer>
             </PoolWrapper>

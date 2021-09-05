@@ -28,7 +28,7 @@ export const EVENTS_INFO: {
       desc: 'WITHDRAW FROM THIS POOL, and deposit to the new POOL',
       address: '0xaF7BF584be79d5335ac1c2404215B3F809684bA2',
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
-      active: true,
+      active: false,
       startBlock: 10630150,
       endBlock: 10630150,
       pools: [
