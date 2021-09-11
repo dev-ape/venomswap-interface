@@ -50,7 +50,7 @@ export const EVENTS_INFO: {
         { pid: 1, title: 'BTC LOWER', img1: '/images/events/btc.png', img2: '/images/events/duel_dark.png' }
       ]
     },
- {
+    {
       title: 'Juventus vs. Milan',
       desc:
         'You win if you correctly guess Juventus vs. Milan match result, who wins ?, ML1 or ML2, 19 September 18:45 UTC',
