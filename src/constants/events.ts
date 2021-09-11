@@ -49,6 +49,20 @@ export const EVENTS_INFO: {
         { pid: 0, title: 'BTC HIGHER', img1: '/images/events/btc.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: 'BTC LOWER', img1: '/images/events/btc.png', img2: '/images/events/duel_dark.png' }
       ]
+    },
+ {
+      title: 'Juventus vs. Milan',
+      desc:
+        'You win if you correctly guess Juventus vs. Milan match result, who wins ?, ML1 or ML2, 19 September 18:45 UTC',
+      address: '0x65A12a07e793939244F50FaE954dFd3841100A51',
+      tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
+      active: true,
+      startBlock: 10853600,
+      endBlock: 11061180,
+      pools: [
+        { pid: 0, title: 'JUVENTUS WIN', img1: '/images/events/juve.png', img2: '/images/events/duel_dark.png' },
+        { pid: 1, title: 'MILAN WIN', img1: '/images/events/milan.png', img2: '/images/events/duel_dark.png' }
+      ]
     }
   ],
   [ChainId.BSC_TESTNET]: []
