@@ -10,6 +10,8 @@ import determineBaseToken from '../../utils/determineBaseToken'
 import useConfigStaking from 'hooks/useStakingConfig'
 import validStakeInfo from 'utils/validStakeInfo'
 import { useBlockNumber } from 'state/application/hooks'
+import useBUSDPrice from 'hooks/useBUSDPrice'
+import calculateApr from 'utils/calculateApr'
 
 export interface StakeInfo {
   // the pool id (pid) of the pool
@@ -63,9 +65,12 @@ export function useStakeInfo(address: string | undefined): StakeInfo | undefined
   const tokensWithPrices = useTokensWithWethPrices()
 
   const weth = tokensWithPrices?.WETH?.token
-  //const wethBusdPrice = useBUSDPrice(weth)
+  const wethBusdPrice = useBUSDPrice(weth)
+  //console.log('wethBusdPrice', wethBusdPrice?.toSignificant())
   const govToken = tokensWithPrices?.govToken?.token
   const govTokenWETHPrice = tokensWithPrices?.govToken?.price
+
+  //console.log('govTokenWETHPrice', govTokenWETHPrice?.toSignificant())
 
   const blocksPerYear = getBlocksPerYear(chainId)
 
@@ -128,26 +133,22 @@ export function useStakeInfo(address: string | undefined): StakeInfo | undefined
       const active = poolInfoResult && JSBI.GT(JSBI.BigInt(allocPoint), 0) ? true : false
 
       const baseToken = determineBaseToken(tokensWithPrices, tokens)
-      const totalStakedAmountWETH = undefined
-      const totalStakedAmountBUSD = undefined
-      const apr = undefined
 
-      //   const totalStakedAmountWETH = calculateWethAdjustedTotalStakedAmount(
-      //     chainId,
-      //     baseToken,
-      //     tokensWithPrices,
-      //     tokens,
-      //     totalLpTokenSupply,
-      //     totalStakedAmount,
-      //     lpTokenReserve?.result
-      //   )
+      const totalStakedAmountWETH =
+        govTokenWETHPrice && totalStakedAmount && totalStakedAmount.multiply(govTokenWETHPrice?.raw)
 
-      //   const totalStakedAmountBUSD =
-      //     wethBusdPrice && totalStakedAmountWETH && totalStakedAmountWETH.multiply(wethBusdPrice?.raw)
+      const totalStakedAmountBUSD =
+        wethBusdPrice && totalStakedAmountWETH && totalStakedAmountWETH.multiply(wethBusdPrice?.raw)
 
-      //   const apr = totalStakedAmountWETH
-      //     ? calculateApr(govTokenWETHPrice, baseBlockRewards, blocksPerYear, poolShare, totalStakedAmountWETH)
-      //     : undefined
+      //console.log('totalStakedAmount', totalStakedAmount?.toSignificant())
+      //console.log('totalStakedAmountWETH', totalStakedAmountWETH?.toSignificant(4))
+      //console.log('totalStakedAmountBUSD', totalStakedAmountBUSD?.toSignificant(4))
+
+      const apr = totalStakedAmountWETH
+        ? calculateApr(govTokenWETHPrice, baseBlockRewards, blocksPerYear, poolShare, totalStakedAmountWETH)
+        : undefined
+
+      //console.log('apr', apr?.toSignificant(10))
 
       const stakingInfo = {
         pid: pid,

@@ -37,6 +37,7 @@ const StakeDesc = styled.div`
   line-height: 20px;
   font-weight: 500;
   margin: 20px 0;
+  color: ${({ theme }) => theme.text2};
 `
 const StakeContainer = styled.div`
   display: grid;
@@ -140,13 +141,7 @@ export default function Stake() {
     <PageWrapper gap="lg" justify="center">
       <PageColumn>
         <StakeTitle>Stake</StakeTitle>
-        <StakeDesc>
-          For every swap on the exchange on every chain, 0.05% of the swap fees are distributed as SUSHI proportional to
-          your share of the SushiBar. When your SUSHI is staked into the SushiBar, you recieve xSUSHI in return for
-          voting rights and a fully composable token that can interact with other protocols. Your xSUSHI is continuously
-          compounding, when you unstake you will receive all the originally deposited SUSHI and any additional from
-          fees.
-        </StakeDesc>
+        <StakeDesc>Stake DUEL earn DUEL!</StakeDesc>
         {stakeInfo && (
           <StakeContainer>
             <StakeUnstakeWrapper>
@@ -177,19 +172,27 @@ export default function Stake() {
             <StatsContainer>
               <StatsRow>
                 <StatsTitle>TVL</StatsTitle>
-                <StatsValue>$100 000</StatsValue>
+                <StatsValue>
+                  {stakeInfo?.valueOfTotalStakedAmountInUsd
+                    ? `$${stakeInfo?.valueOfTotalStakedAmountInUsd.toSignificant(2, { groupSeparator: ',' })}`
+                    : '-'}
+                </StatsValue>
               </StatsRow>
               <StatsRow>
                 <StatsTitle>ARP</StatsTitle>
-                <StatsValue>256,00%</StatsValue>
+                <StatsValue>
+                  {stakeInfo?.apr && stakeInfo?.apr.greaterThan('0')
+                    ? `${stakeInfo?.apr.multiply('100').toSignificant(4, { groupSeparator: ',' })}%`
+                    : 'TBD'}
+                </StatsValue>
               </StatsRow>
               <StatsRow>
                 <StatsTitle>Staked</StatsTitle>
-                <StatsValue>{stakeInfo?.stakedAmount.toSignificant()} DUEL</StatsValue>
+                <StatsValue>{stakeInfo?.stakedAmount.toSignificant(4, { groupSeparator: ',' })} DUEL</StatsValue>
               </StatsRow>
               <StatsRow>
                 <StatsTitle>Rewards</StatsTitle>
-                <StatsValue>{stakeInfo?.earnedAmount.toSignificant()} DUEL</StatsValue>
+                <StatsValue>{stakeInfo?.earnedAmount.toSignificant(4, { groupSeparator: ',' })} DUEL</StatsValue>
               </StatsRow>
               <ClaimWrapper>
                 <ClaimComponent address={stakingConfig?.address} stakeInfo={stakeInfo} />
