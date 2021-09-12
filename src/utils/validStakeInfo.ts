@@ -8,7 +8,8 @@ export default function validStakeInfo(
   userInfo: CallState,
   baseRewardsPerBlock: CallState,
   specificPoolRewardsPerBlock: CallState,
-  startBlock: CallState
+  startBlock: CallState,
+  endBlock: CallState
 ): boolean {
   if (
     tokens &&
@@ -35,7 +36,11 @@ export default function validStakeInfo(
     startBlock &&
     !startBlock.error &&
     !startBlock.loading &&
-    startBlock?.result?.[0] !== undefined
+    startBlock?.result?.[0] !== undefined &&
+    endBlock &&
+    !endBlock.error &&
+    !endBlock.loading &&
+    endBlock?.result?.[0] !== undefined
   ) {
     return true
   }

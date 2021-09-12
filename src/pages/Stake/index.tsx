@@ -13,6 +13,7 @@ import { useActiveWeb3React } from 'hooks'
 import { useTokenBalance } from 'state/wallet/hooks'
 import { useStakeInfo } from 'state/farm/hooks'
 import ClaimComponent from 'components/stake/Claim'
+import { TYPE } from 'theme'
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 720px;
@@ -28,7 +29,6 @@ const StakeTitle = styled.div`
   width: 100%;
   font-size: 24px;
   font-weight: 700;
-  margin-bottom: 12px;
 `
 
 const StakeDesc = styled.div`
@@ -36,9 +36,9 @@ const StakeDesc = styled.div`
   font-size: 16px;
   line-height: 20px;
   font-weight: 500;
+  margin: 20px 0;
 `
 const StakeContainer = styled.div`
-  margin-top: 20px;
   display: grid;
   grid-template-columns: 1.5fr 1fr;
   grid-column-gap: 12px;
@@ -114,6 +114,15 @@ const StatsValue = styled.div`
 `
 const ClaimWrapper = styled.div``
 
+const TextWrapper = styled.div`
+  width: 100%;
+  align-items: center;
+  display: flex;
+  text-align: center;
+  font-size: 20px;
+  padding: 6px 20px;
+`
+
 export default function Stake() {
   //const theme = useTheme()
   const { chainId, account } = useActiveWeb3React()
@@ -149,13 +158,18 @@ export default function Stake() {
                   Unstake
                 </StakeTabTitle>
               </StakeTabWrapper>
-              <InputWrapper show={stakeSelected}>
-                <StakingComponent
-                  address={stakingConfig?.address}
-                  stakeInfo={stakeInfo}
-                  unstakedAmount={userUnstaked}
-                />
-              </InputWrapper>
+              {!stakeInfo?.canDeposit && (
+                <TextWrapper>Deposit deadline time has passed. Please check back later.</TextWrapper>
+              )}
+              {stakeInfo?.canDeposit && (
+                <InputWrapper show={stakeSelected}>
+                  <StakingComponent
+                    address={stakingConfig?.address}
+                    stakeInfo={stakeInfo}
+                    unstakedAmount={userUnstaked}
+                  />
+                </InputWrapper>
+              )}
               <InputWrapper show={!stakeSelected}>
                 <UnstakingComponent address={stakingConfig?.address} stakeInfo={stakeInfo} />
               </InputWrapper>
@@ -170,6 +184,10 @@ export default function Stake() {
                 <StatsValue>256,00%</StatsValue>
               </StatsRow>
               <StatsRow>
+                <StatsTitle>Staked</StatsTitle>
+                <StatsValue>{stakeInfo?.stakedAmount.toSignificant()} DUEL</StatsValue>
+              </StatsRow>
+              <StatsRow>
                 <StatsTitle>Rewards</StatsTitle>
                 <StatsValue>{stakeInfo?.earnedAmount.toSignificant()} DUEL</StatsValue>
               </StatsRow>
@@ -179,6 +197,7 @@ export default function Stake() {
             </StatsContainer>
           </StakeContainer>
         )}
+        {!stakeInfo && <TYPE.largeHeader>No active staking pools, please check back later.</TYPE.largeHeader>}
       </PageColumn>
     </PageWrapper>
   )

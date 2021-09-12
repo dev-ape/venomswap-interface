@@ -9,6 +9,7 @@ import getBlocksPerYear from '../../utils/getBlocksPerYear'
 import determineBaseToken from '../../utils/determineBaseToken'
 import useConfigStaking from 'hooks/useStakingConfig'
 import validStakeInfo from 'utils/validStakeInfo'
+import { useBlockNumber } from 'state/application/hooks'
 
 export interface StakeInfo {
   // the pool id (pid) of the pool
@@ -21,6 +22,8 @@ export interface StakeInfo {
   allocPoint: JSBI
   // start block for all the rewards pools
   startBlock: number
+  // end block for all the rewards pools
+  endBlock: number
   // base rewards per block
   baseRewardsPerBlock: TokenAmount
   // pool specific rewards per block
@@ -43,6 +46,10 @@ export interface StakeInfo {
   valueOfTotalStakedAmountInUsd: Fraction | undefined
   // pool APR
   apr: Fraction | undefined
+  // if pool is active
+  active: boolean
+  // if can deposit
+  canDeposit: boolean
 }
 
 export function useStakeInfo(address: string | undefined): StakeInfo | undefined {
@@ -71,7 +78,8 @@ export function useStakeInfo(address: string | undefined): StakeInfo | undefined
   const pendingReward = useSingleCallResult(stakeContract, 'getPendingRewards', pidAccountMapping)
 
   const startBlock = useSingleCallResult(stakeContract, 'startBlock')
-  //const lastBlockNumber = useBlockNumber()
+  const endBlock = useSingleCallResult(stakeContract, 'endBlock')
+  const lastBlockNumber = useBlockNumber()
   const baseRewards = useSingleCallResult(stakeContract, 'tokenPerBlock')
 
   return useMemo(() => {
@@ -91,7 +99,8 @@ export function useStakeInfo(address: string | undefined): StakeInfo | undefined
         userInfo,
         baseRewardsPerBlock,
         specificPoolRewardsPerBlock,
-        startBlock
+        startBlock,
+        endBlock
       )
     ) {
       const baseBlockRewards = new TokenAmount(govToken, JSBI.BigInt(baseRewardsPerBlock?.result?.[0] ?? 0))
@@ -110,10 +119,13 @@ export function useStakeInfo(address: string | undefined): StakeInfo | undefined
 
       const totalPendingRewardAmount = new TokenAmount(govToken, calculatedTotalPendingRewards)
       const startsAtBlock = startBlock.result?.[0] ?? 0
+      const endsAtBlock = endBlock.result?.[0] ?? 0
+      const canDeposit = lastBlockNumber ? lastBlockNumber < endsAtBlock : false
 
       // poolInfo: lpToken address, allocPoint uint256, lastRewardBlock uint256, accGovTokenPerShare uint256
       const poolInfoResult = poolInfo.result
       const allocPoint = JSBI.BigInt(poolInfoResult && poolInfoResult[1])
+      const active = poolInfoResult && JSBI.GT(JSBI.BigInt(allocPoint), 0) ? true : false
 
       const baseToken = determineBaseToken(tokensWithPrices, tokens)
       const totalStakedAmountWETH = undefined
@@ -144,6 +156,7 @@ export function useStakeInfo(address: string | undefined): StakeInfo | undefined
         allocPoint: allocPoint,
 
         startBlock: startsAtBlock,
+        endBlock: endsAtBlock,
         baseRewardsPerBlock: baseBlockRewards,
         poolRewardsPerBlock: poolBlockRewards,
         blocksPerYear: blocksPerYear,
@@ -154,7 +167,9 @@ export function useStakeInfo(address: string | undefined): StakeInfo | undefined
         earnedAmount: totalPendingRewardAmount,
         valueOfTotalStakedAmountInWeth: totalStakedAmountWETH,
         valueOfTotalStakedAmountInUsd: totalStakedAmountBUSD,
-        apr: apr
+        apr: apr,
+        active: active,
+        canDeposit: canDeposit
       }
 
       return stakingInfo
@@ -172,7 +187,8 @@ export function useStakeInfo(address: string | undefined): StakeInfo | undefined
     userInfo,
     pendingReward,
     blocksPerYear,
-    startBlock
+    startBlock,
+    endBlock
   ])
 }
 
