@@ -11,7 +11,7 @@ export const STAKE_INFO: {
 } = {
   [ChainId.BSC_MAINNET]: undefined,
   [ChainId.BSC_TESTNET]: {
-    address: '0xF682aD1CAc9De901c7f3dB1580Cb4620Fa1A8718',
+    address: '0x917bA6835537EF1faf7c5B586063A6b4BBE0E652',
     tokens: getPairTokensWithDefaults(ChainId.BSC_TESTNET, 'DUEL/DUEL')
   }
 }
