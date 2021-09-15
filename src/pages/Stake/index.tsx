@@ -179,7 +179,7 @@ export default function Stake() {
                 </StatsValue>
               </StatsRow>
               <StatsRow>
-                <StatsTitle>ARP</StatsTitle>
+                <StatsTitle>APR</StatsTitle>
                 <StatsValue>
                   {stakeInfo?.apr && stakeInfo?.apr.greaterThan('0')
                     ? `${stakeInfo?.apr.multiply('100').toSignificant(4, { groupSeparator: ',' })}%`
