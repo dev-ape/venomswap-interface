@@ -12,6 +12,7 @@ import { GOVERNANCE_ADDRESS, MERKLE_DISTRIBUTOR_ADDRESS, MASTER_BREEDER, PIT, PI
 import { abi as MASTER_BREEDER_ABI } from '../constants/abis/MasterHepa.json'
 import { abi as GOVERNANCE_TOKEN_ABI } from '../constants/abis/HepaToken.json'
 import { abi as EVENT_ABI } from '../constants/abis/DuelEvent.json'
+import { abi as STAKING_ABI } from '../constants/abis/DuelStaking.json'
 import {
   ARGENT_WALLET_DETECTOR_ABI,
   ARGENT_WALLET_DETECTOR_MAINNET_ADDRESS
@@ -141,6 +142,10 @@ export function useStakingContract(stakingAddress?: string, withSignerIfPossible
 
 export function useEventContract(address?: string, withSignerIfPossible?: boolean): Contract | null {
   return useContract(address, EVENT_ABI, withSignerIfPossible)
+}
+
+export function useStakeContract(address?: string, withSignerIfPossible?: boolean): Contract | null {
+  return useContract(address, STAKING_ABI, withSignerIfPossible)
 }
 
 export function useMasterBreederContract(withSignerIfPossible?: boolean): Contract | null {

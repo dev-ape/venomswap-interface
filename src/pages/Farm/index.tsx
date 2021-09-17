@@ -244,7 +244,7 @@ export default function Farm() {
 
   const events = useConfigEvents(chainId)
 
-  const eventInfo = useEventInfo(events[activeEvent].address)
+  const eventInfo = useEventInfo(events[activeEvent]?.address)
 
   const lastBlockNumber = useBlockNumber()
 
@@ -263,128 +263,137 @@ export default function Farm() {
 
   return (
     <PageWrapper gap="lg" justify="center">
-      <EventsContainer>
-        {events.map((event, index) => {
-          return (
-            <EventTitleWrapper
-              key={event.address}
-              active={activeEvent === index}
-              onClick={() => handleEventClick(index)}
-            >
-              <EventTitle>{event.title}</EventTitle>
-              {lastBlockNumber && lastBlockNumber < event.startBlock && (
-                <EventStatusUpcoming>Upcoming</EventStatusUpcoming>
-              )}
-              {lastBlockNumber && lastBlockNumber >= event.startBlock && lastBlockNumber <= event.endBlock && (
-                <EventStatusCurrent>Current</EventStatusCurrent>
-              )}
-              {lastBlockNumber && lastBlockNumber > event.endBlock && (
-                <EventStatusFinished>Finished</EventStatusFinished>
-              )}
-            </EventTitleWrapper>
-          )
-        })}
-      </EventsContainer>
-      <PoolsContainer>
-        <PoolTitle>{events[activeEvent].title}</PoolTitle>
-        <PoolDesc>{events[activeEvent].desc}</PoolDesc>
-        <PoolRowsContainer>
-          <PoolHeaderItem>Pool</PoolHeaderItem>
-          <PoolHeaderItem>TVL</PoolHeaderItem>
-          <HideSmallFlex>
-            <PoolHeaderItem>Rewards</PoolHeaderItem>
-          </HideSmallFlex>
-          <PoolHeaderItem>Earned</PoolHeaderItem>
-          <PoolHeaderItemLast>APR</PoolHeaderItemLast>
-        </PoolRowsContainer>
-        {eventInfo.map(event => {
-          return (
-            <PoolWrapper key={event.pid}>
-              <PoolRowsContainer onClick={() => handlePoolClick(event.pid)}>
-                <PoolColumn>
-                  <PoolNameContainer>
+      {events.length > 0 && (
+        <>
+          <EventsContainer>
+            {events.map((event, index) => {
+              return (
+                <EventTitleWrapper
+                  key={event.address}
+                  active={activeEvent === index}
+                  onClick={() => handleEventClick(index)}
+                >
+                  <EventTitle>{event.title}</EventTitle>
+                  {lastBlockNumber && lastBlockNumber < event.startBlock && (
+                    <EventStatusUpcoming>Upcoming</EventStatusUpcoming>
+                  )}
+                  {lastBlockNumber && lastBlockNumber >= event.startBlock && lastBlockNumber <= event.endBlock && (
+                    <EventStatusCurrent>Current</EventStatusCurrent>
+                  )}
+                  {lastBlockNumber && lastBlockNumber > event.endBlock && (
+                    <EventStatusFinished>Finished</EventStatusFinished>
+                  )}
+                </EventTitleWrapper>
+              )
+            })}
+          </EventsContainer>
+          <PoolsContainer>
+            <PoolTitle>{events[activeEvent].title}</PoolTitle>
+            <PoolDesc>{events[activeEvent].desc}</PoolDesc>
+            <PoolRowsContainer>
+              <PoolHeaderItem>Pool</PoolHeaderItem>
+              <PoolHeaderItem>TVL</PoolHeaderItem>
+              <HideSmallFlex>
+                <PoolHeaderItem>Rewards</PoolHeaderItem>
+              </HideSmallFlex>
+              <PoolHeaderItem>Earned</PoolHeaderItem>
+              <PoolHeaderItemLast>APR</PoolHeaderItemLast>
+            </PoolRowsContainer>
+            {eventInfo.map(event => {
+              return (
+                <PoolWrapper key={event.pid}>
+                  <PoolRowsContainer onClick={() => handlePoolClick(event.pid)}>
+                    <PoolColumn>
+                      <PoolNameContainer>
+                        <HideSmallFlex>
+                          <EventPoolDoubleLogo
+                            eventImg1={events[activeEvent].pools[event.pid].img1}
+                            eventImg2={events[activeEvent].pools[event.pid].img2}
+                          />
+                        </HideSmallFlex>
+
+                        <PoolNameWrapper>
+                          <PoolName>{event.poolTitle}</PoolName>
+                          <PoolPair>
+                            {event.tokens[0].symbol} - {event.tokens[1].symbol} LP
+                          </PoolPair>
+                        </PoolNameWrapper>
+                      </PoolNameContainer>
+                    </PoolColumn>
+                    <PoolColumn>
+                      {event.valueOfTotalStakedAmountInUsd
+                        ? `$${event.valueOfTotalStakedAmountInUsd.toFixed(0, { groupSeparator: ',' })}`
+                        : '-'}
+                    </PoolColumn>
                     <HideSmallFlex>
-                      <EventPoolDoubleLogo
-                        eventImg1={events[activeEvent].pools[event.pid].img1}
-                        eventImg2={events[activeEvent].pools[event.pid].img2}
-                      />
+                      <PoolColumnWrap>
+                        <CurrencyLogo currency={event.tokens[1]} />
+                        <PoolRewardsAmount>
+                          {event.poolRewardsPerBlock.toSignificant(4, { groupSeparator: ',' })}
+                        </PoolRewardsAmount>
+                        <PoolRewardsText>DUEL/B</PoolRewardsText>
+                      </PoolColumnWrap>
                     </HideSmallFlex>
 
-                    <PoolNameWrapper>
-                      <PoolName>{event.poolTitle}</PoolName>
-                      <PoolPair>
-                        {event.tokens[0].symbol} - {event.tokens[1].symbol} LP
-                      </PoolPair>
-                    </PoolNameWrapper>
-                  </PoolNameContainer>
-                </PoolColumn>
-                <PoolColumn>
-                  {event.valueOfTotalStakedAmountInUsd
-                    ? `$${event.valueOfTotalStakedAmountInUsd.toFixed(0, { groupSeparator: ',' })}`
-                    : '-'}
-                </PoolColumn>
-                <HideSmallFlex>
-                  <PoolColumnWrap>
-                    <CurrencyLogo currency={event.tokens[1]} />
-                    <PoolRewardsAmount>
-                      {event.poolRewardsPerBlock.toSignificant(4, { groupSeparator: ',' })}
-                    </PoolRewardsAmount>
-                    <PoolRewardsText>DUEL/B</PoolRewardsText>
-                  </PoolColumnWrap>
-                </HideSmallFlex>
+                    <PoolColumnWrap>
+                      <PoolRewardsAmount>
+                        {event.earnedAmount.toSignificant(4, { groupSeparator: ',' })}
+                      </PoolRewardsAmount>
+                      <PoolRewardsText>DUEL</PoolRewardsText>
+                    </PoolColumnWrap>
+                    <PoolColumnLast>
+                      {event.apr && event.apr.greaterThan('0')
+                        ? `${event.apr.multiply('100').toSignificant(4, { groupSeparator: ',' })}%`
+                        : 'TBD'}
+                    </PoolColumnLast>
+                  </PoolRowsContainer>
+                  <StakeUnstakeContainer show={visibleForms[event.pid]}>
+                    <Divider />
+                    <StakeUnstakeWrapper>
+                      {event.canDeposit && (
+                        <StakingComponent
+                          address={events[activeEvent].address}
+                          eventInfo={event}
+                          userLiquidityUnstaked={userLiquidityUnstaked}
+                        />
+                      )}
+                      {!event.canDeposit && !event.canExit && !event.isLost && !event.isCancelled && (
+                        <TextWrapper>
+                          Deposit deadline time has passed. Please wait until the end of the event.
+                        </TextWrapper>
+                      )}
+                      {!event.canDeposit && event.canExit && !event.isClaimed && !event.isCancelled && (
+                        <ExitComponent address={events[activeEvent].address} eventInfo={event} />
+                      )}
+                      {!event.canDeposit && event.canExit && event.isClaimed && !event.isCancelled && (
+                        <TextWrapper>You have successfully claimed your rewards!</TextWrapper>
+                      )}
+                      {!event.canDeposit && !event.canExit && event.isLost && !event.isCancelled && (
+                        <TextWrapper>
+                          Unfortunately this pool has lost, you can participate in the upcoming events!
+                        </TextWrapper>
+                      )}
+                      {event.isCancelled && (
+                        <TextWrapper>
+                          This event has been cancelled, please withdraw your LPs and join another event!
+                        </TextWrapper>
+                      )}
 
-                <PoolColumnWrap>
-                  <PoolRewardsAmount>{event.earnedAmount.toSignificant(4, { groupSeparator: ',' })}</PoolRewardsAmount>
-                  <PoolRewardsText>DUEL</PoolRewardsText>
-                </PoolColumnWrap>
-                <PoolColumnLast>
-                  {event.apr && event.apr.greaterThan('0')
-                    ? `${event.apr.multiply('100').toSignificant(4, { groupSeparator: ',' })}%`
-                    : 'TBD'}
-                </PoolColumnLast>
-              </PoolRowsContainer>
-              <StakeUnstakeContainer show={visibleForms[event.pid]}>
-                <Divider />
-                <StakeUnstakeWrapper>
-                  {event.canDeposit && (
-                    <StakingComponent
-                      address={events[activeEvent].address}
-                      eventInfo={event}
-                      userLiquidityUnstaked={userLiquidityUnstaked}
-                    />
-                  )}
-                  {!event.canDeposit && !event.canExit && !event.isLost && !event.isCancelled && (
-                    <TextWrapper>Deposit deadline time has passed. Please wait until the end of the event.</TextWrapper>
-                  )}
-                  {!event.canDeposit && event.canExit && !event.isClaimed && !event.isCancelled && (
-                    <ExitComponent address={events[activeEvent].address} eventInfo={event} />
-                  )}
-                  {!event.canDeposit && event.canExit && event.isClaimed && !event.isCancelled && (
-                    <TextWrapper>You have successfully claimed your rewards!</TextWrapper>
-                  )}
-                  {!event.canDeposit && !event.canExit && event.isLost && !event.isCancelled && (
-                    <TextWrapper>
-                      Unfortunately this pool has lost, you can participate in the upcoming events!
-                    </TextWrapper>
-                  )}
-                  {event.isCancelled && (
-                    <TextWrapper>
-                      This event has been cancelled, please withdraw your LPs and join another event!
-                    </TextWrapper>
-                  )}
-
-                  {events[activeEvent].active && (
-                    <UnstakingComponent address={events[activeEvent].address} eventInfo={event} />
-                  )}
-                  {!events[activeEvent].active && (
-                    <EmergencyComponent address={events[activeEvent].address} eventInfo={event} />
-                  )}
-                </StakeUnstakeWrapper>
-              </StakeUnstakeContainer>
-            </PoolWrapper>
-          )
-        })}
-      </PoolsContainer>
+                      {events[activeEvent].active && (
+                        <UnstakingComponent address={events[activeEvent].address} eventInfo={event} />
+                      )}
+                      {!events[activeEvent].active && (
+                        <EmergencyComponent address={events[activeEvent].address} eventInfo={event} />
+                      )}
+                    </StakeUnstakeWrapper>
+                  </StakeUnstakeContainer>
+                </PoolWrapper>
+              )
+            })}
+          </PoolsContainer>
+        </>
+      )}
+      {events.length === 0 && <TYPE.largeHeader>No active events, please check back later.</TYPE.largeHeader>}
     </PageWrapper>
   )
 }
