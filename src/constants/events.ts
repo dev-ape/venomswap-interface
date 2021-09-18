@@ -63,7 +63,21 @@ export const EVENTS_INFO: {
         { pid: 0, title: 'JUVENTUS WIN', img1: '/images/events/juve.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: 'MILAN WIN', img1: '/images/events/milan.png', img2: '/images/events/duel_dark.png' }
       ]
-    }
+    },
+    {
+      title: 'AVAX vs. ETH',
+      desc:
+        'AVAXs Current Price $72, ETHs Current Price $3511, Which one gains more value until 25 September 21:00 UTC',
+      address: '0x4B1e9130992925e73eA286fCe977760c46B26640',
+      tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
+      active: true,
+      startBlock: 11031991,
+      endBlock: 11233591,
+      pools: [
+        { pid: 0, title: 'AVAX MORE GAIN', img1: '/images/events/AVAXX.png', img2: '/images/events/duel_dark.png' },
+        { pid: 1, title: 'ETH MORE GAIN', img1: '/images/events/ETHH.png', img2: '/images/events/duel_dark.png' }
+      ]
+    },
   ],
   [ChainId.BSC_TESTNET]: []
 }
