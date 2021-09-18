@@ -141,7 +141,7 @@ export default function Stake() {
     <PageWrapper gap="lg" justify="center">
       <PageColumn>
         <StakeTitle>Stake</StakeTitle>
-        <StakeDesc>Stake DUEL earn DUEL!</StakeDesc>
+        <StakeDesc>Stake DUEL Earn DUEL, Withdraw under 1 hour 8% fee, under 1 week 4% fee.</StakeDesc>
         {stakeInfo && (
           <StakeContainer>
             <StakeUnstakeWrapper>
