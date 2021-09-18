@@ -77,7 +77,7 @@ export const EVENTS_INFO: {
         { pid: 0, title: 'AVAX MORE GAIN', img1: '/images/events/AVAXX.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: 'ETH MORE GAIN', img1: '/images/events/ETHH.png', img2: '/images/events/duel_dark.png' }
       ]
-    },
+    }
   ],
   [ChainId.BSC_TESTNET]: []
 }
