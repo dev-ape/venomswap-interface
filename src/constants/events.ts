@@ -58,7 +58,7 @@ export const EVENTS_INFO: {
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
       active: true,
       startBlock: 10853600,
-      endBlock: 11061180,
+      endBlock: 11060380,
       pools: [
         { pid: 0, title: 'JUVENTUS WIN', img1: '/images/events/juve.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: 'MILAN WIN', img1: '/images/events/milan.png', img2: '/images/events/duel_dark.png' }
