@@ -91,6 +91,20 @@ export const EVENTS_INFO: {
         { pid: 0, title: '2.5 OVER', img1: '/images/events/over.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: '2.5 UNDER', img1: '/images/events/under.png', img2: '/images/events/duel_dark.png' }
       ]
+    },
+    {
+      title: 'Whatsapp vs. Telegram, User Experience',
+      desc:
+        'Is Whatsapp more useful or Telegram? The side with the highest LP will win 02nd October 21:00 UTC',
+      address: '0x0E6C15a0f03e74Ae3288d25f7c709DDBE6bBeb1D',
+      tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
+      active: true,
+      startBlock: 11232192,
+      endBlock: 11433900,
+      pools: [
+        { pid: 0, title: 'Whatsapp', img1: '/images/events/whatsapp.png', img2: '/images/events/duel_dark.png' },
+        { pid: 1, title: 'Telegram', img1: '/images/events/telegram.png', img2: '/images/events/duel_dark.png' }
+      ]
     }
   ],
   [ChainId.BSC_TESTNET]: []
