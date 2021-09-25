@@ -91,8 +91,8 @@ export const EVENTS_INFO: {
         { pid: 0, title: '2.5 OVER', img1: '/images/events/over.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: '2.5 UNDER', img1: '/images/events/under.png', img2: '/images/events/duel_dark.png' }
       ]
-    },
-    {
+     },
+     {
       title: 'Whatsapp vs. Telegram, User Experience',
       desc:
         'Is Whatsapp more useful or Telegram? The side with the highest LP will win.',
