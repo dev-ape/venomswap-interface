@@ -99,7 +99,7 @@ export const EVENTS_INFO: {
       address: '0x0E6C15a0f03e74Ae3288d25f7c709DDBE6bBeb1D',
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
       active: true,
-      startBlock: 11232191,
+      startBlock: 11232192,
       endBlock: 11433900,
       pools: [
         { pid: 0, title: 'Whatsapp', img1: '/images/events/whatsapp.png', img2: '/images/events/duel_dark.png' },
