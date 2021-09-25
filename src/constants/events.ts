@@ -77,8 +77,8 @@ export const EVENTS_INFO: {
         { pid: 0, title: 'AVAX MORE GAIN', img1: '/images/events/AVAXX.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: 'ETH MORE GAIN', img1: '/images/events/ETHH.png', img2: '/images/events/duel_dark.png' }
       ]
-     },
-     {
+    },
+    {
       title: 'Paris Saint Germain vs. Manchester City',
       desc:
         'You win if you correctly guess Paris Saint Germain vs. Manchester City match OVER 2.5 GOALS or UNDER 2.5 GOALS',
@@ -91,8 +91,8 @@ export const EVENTS_INFO: {
         { pid: 0, title: '2.5 OVER', img1: '/images/events/over.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: '2.5 UNDER', img1: '/images/events/under.png', img2: '/images/events/duel_dark.png' }
       ]
-     },
-     {
+    },
+    {
       title: 'Whatsapp vs. Telegram, User Experience',
       desc:
         'Is Whatsapp more useful or Telegram? The side with the highest LP will win.',
@@ -105,7 +105,7 @@ export const EVENTS_INFO: {
         { pid: 0, title: 'Whatsapp', img1: '/images/events/whatsapp.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: 'Telegram', img1: '/images/events/telegram.png', img2: '/images/events/duel_dark.png' }
       ]
-     }
+    }
   ],
   [ChainId.BSC_TESTNET]: []
 }
