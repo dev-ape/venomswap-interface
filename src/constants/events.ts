@@ -93,7 +93,7 @@ export const EVENTS_INFO: {
       ]
     },
     {
-      title: 'Whatsapp vs. Telegram, User Experience',
+      title: 'Whatsapp vs. Telegram User Experience',
       desc:
         'Is Whatsapp more useful or Telegram? The side with the highest LP will win 02nd October 21:00 UTC',
       address: '0x0E6C15a0f03e74Ae3288d25f7c709DDBE6bBeb1D',
