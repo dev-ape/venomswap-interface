@@ -102,8 +102,8 @@ export const EVENTS_INFO: {
       startBlock: 11232191,
       endBlock: 11433900,
       pools: [
-        { pid: 0, title: '2.5 OVER', img1: '/images/events/whatsapp.png', img2: '/images/events/duel_dark.png' },
-        { pid: 1, title: '2.5 UNDER', img1: '/images/events/telegram.png', img2: '/images/events/duel_dark.png' }
+        { pid: 0, title: 'Whatsapp', img1: '/images/events/whatsapp.png', img2: '/images/events/duel_dark.png' },
+        { pid: 1, title: 'Telegram', img1: '/images/events/telegram.png', img2: '/images/events/duel_dark.png' }
       ]
     }
   ],
