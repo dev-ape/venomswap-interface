@@ -105,7 +105,7 @@ export const EVENTS_INFO: {
         { pid: 0, title: 'Whatsapp', img1: '/images/events/whatsapp.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: 'Telegram', img1: '/images/events/telegram.png', img2: '/images/events/duel_dark.png' }
       ]
-    }
+     }
   ],
   [ChainId.BSC_TESTNET]: []
 }
