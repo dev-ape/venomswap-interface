@@ -38,8 +38,7 @@ export const EVENTS_INFO: {
     },
     {
       title: 'BTC Price Guess NEW',
-      desc:
-        'You win if you correctly guess the price of BTC. Will it be higher or lower then $52,400 USD at 11 September 23:59 UTC?',
+      desc: 'You win if you correctly guess the price of BTC. Will it be higher or lower then $52,400 USD at 11 September 23:59 UTC?',
       address: '0xC231470e926678CfE8539acdd8b748082A2e4476',
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
       active: true,
@@ -52,8 +51,7 @@ export const EVENTS_INFO: {
     },
     {
       title: 'Juventus vs. Milan',
-      desc:
-        'You win if you correctly guess Juventus vs. Milan match result, who wins ?, ML1 or ML2, 19 September 18:45 UTC',
+      desc: 'You win if you correctly guess Juventus vs. Milan match result, who wins ?, ML1 or ML2, 19 September 18:45 UTC',
       address: '0x65A12a07e793939244F50FaE954dFd3841100A51',
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
       active: true,
@@ -66,8 +64,7 @@ export const EVENTS_INFO: {
     },
     {
       title: 'AVAX vs. ETH',
-      desc:
-        'AVAXs Current Price $72, ETHs Current Price $3511, Which one gains more value until 25 September 21:00 UTC',
+      desc: 'AVAXs Current Price $72, ETHs Current Price $3511, Which one gains more value until 25 September 21:00 UTC',
       address: '0x4B1e9130992925e73eA286fCe977760c46B26640',
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
       active: true,
@@ -80,8 +77,7 @@ export const EVENTS_INFO: {
     },
     {
       title: 'Paris Saint Germain vs. Manchester City',
-      desc:
-        'You win if you correctly guess Paris Saint Germain vs. Manchester City match OVER 2.5 GOALS or UNDER 2.5 GOALS 28th Sept. 21:00 UTC',
+      desc: 'You win if you correctly guess Paris Saint Germain vs. Manchester City match OVER 2.5 GOALS or UNDER 2.5 GOALS 28th Sept. 21:00 UTC',
       address: '0x5C1F8600D750Dcc615076fB4CA0e87c5C0be741c',
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
       active: true,
@@ -94,8 +90,7 @@ export const EVENTS_INFO: {
     },
     {
       title: 'Whatsapp vs. Telegram User Experience',
-      desc:
-        'Is Whatsapp more useful or Telegram? The side with the highest LP will win 02nd October 21:00 UTC',
+      desc: 'Is Whatsapp more useful or Telegram? The side with the highest LP will win 02nd October 21:00 UTC',
       address: '0x0E6C15a0f03e74Ae3288d25f7c709DDBE6bBeb1D',
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
       active: true,
