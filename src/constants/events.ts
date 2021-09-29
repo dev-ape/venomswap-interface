@@ -108,7 +108,7 @@ export const EVENTS_INFO: {
     {
       title: 'Atletico Madrid vs. Barcelona',
       desc:
-        'You win if you correctly guess Atletico Madrid vs. Barcelona match OVER 2.5 GOALS or UNDER 2.5 GOALS 02nd Sept 21:00 UTC',
+        'You win if you correctly guess Atletico Madrid vs. Barcelona match OVER 2.5 GOALS or UNDER 2.5 GOALS 02nd October 21:00 UTC',
       address: '0x535579296da57459fb6F766b57b4FBfE26B9323F',
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
       active: true,
