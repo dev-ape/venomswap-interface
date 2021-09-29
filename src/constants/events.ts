@@ -117,7 +117,7 @@ export const EVENTS_INFO: {
         { pid: 0, title: '2.5 OVER', img1: '/images/events/over.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: '2.5 UNDER', img1: '/images/events/under.png', img2: '/images/events/duel_dark.png' }
       ]
-    }
+     }
   ],
   [ChainId.BSC_TESTNET]: []
 }
