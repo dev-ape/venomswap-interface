@@ -104,6 +104,19 @@ export const EVENTS_INFO: {
         { pid: 0, title: 'Whatsapp', img1: '/images/events/whatsapp.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: 'Telegram', img1: '/images/events/telegram.png', img2: '/images/events/duel_dark.png' }
       ]
+    },
+    {
+      title: 'Atletico Madrid vs. Barcelona',
+      desc: 'You win if you correctly guess Atletico Madrid vs. Barcelona match OVER 2.5 GOALS or UNDER 2.5 GOALS 02nd Sept. 21:00 UTC',
+      address: '0x535579296da57459fb6F766b57b4FBfE26B9323F',
+      tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
+      active: true,
+      startBlock: 11232192,
+      endBlock: 11433900,
+      pools: [
+        { pid: 0, title: '2.5 OVER', img1: '/images/events/over.png', img2: '/images/events/duel_dark.png' },
+        { pid: 1, title: '2.5 UNDER', img1: '/images/events/under.png', img2: '/images/events/duel_dark.png' }
+      ]
     }
   ],
   [ChainId.BSC_TESTNET]: []
