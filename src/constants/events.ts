@@ -121,8 +121,7 @@ export const EVENTS_INFO: {
     },
     {
       title: 'Hanwha Life Esports vs. LNG Esports',
-      desc:
-        'You win if you correctly guess Hanwha Life Esports vs. LNG Esports ML1 or ML2 05th October 8:00 UTC',
+      desc: 'You win if you correctly guess Hanwha Life Esports vs. LNG Esports ML1 or ML2 05th October 8:00 UTC',
       address: '0x6bEda1737Fe625E6b9a3F987e8D0d5A26be8a40B',
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
       active: true,
