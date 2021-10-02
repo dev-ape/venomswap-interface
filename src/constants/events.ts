@@ -118,6 +118,34 @@ export const EVENTS_INFO: {
         { pid: 0, title: '2.5 OVER', img1: '/images/events/over.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: '2.5 UNDER', img1: '/images/events/under.png', img2: '/images/events/duel_dark.png' }
       ]
+    },
+    {
+      title: 'Hanwha Life Esports vs. LNG Esports',
+      desc:
+        'You win if you correctly guess Hanwha Life Esports vs. LNG Esports ML1 or ML2 05th October 8:00 UTC',
+      address: '0x6bEda1737Fe625E6b9a3F987e8D0d5A26be8a40B',
+      tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
+      active: true,
+      startBlock: 11346106,
+      endBlock: 11440886,
+      pools: [
+        { pid: 0, title: 'Hanwha WIN', img1: '/images/events/hanwha.png', img2: '/images/events/duel_dark.png' },
+        { pid: 1, title: 'LNG WIN', img1: '/images/events/lng.png', img2: '/images/events/duel_dark.png' }
+      ]
+    },
+    {
+      title: 'Italy vs. Spain National Football Match',
+      desc:
+        'You win if you correctly guess Italy vs. Spain National match Both Teams to Score YES or NO 06th October 21:00 UTC',
+      address: '0x6aC69Eb64C8ACcc0715Ed67715624b0A3E818d33',
+      tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
+      active: true,
+      startBlock: 11346106,
+      endBlock: 11469686,
+      pools: [
+        { pid: 0, title: 'BTTS YES', img1: '/images/events/yes.png', img2: '/images/events/duel_dark.png' },
+        { pid: 1, title: 'BTTS NO', img1: '/images/events/no.png', img2: '/images/events/duel_dark.png' }
+      ]
     }
   ],
   [ChainId.BSC_TESTNET]: []
