@@ -125,8 +125,8 @@ export const EVENTS_INFO: {
       address: '0x6af5a8ac8b719f416c091f79727d8600126a51e7',
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
       active: true,
-      startBlock: 11346106,
-      endBlock: 11440886,
+      startBlock: 11426106,
+      endBlock: 11519686,
       pools: [
         { pid: 0, title: 'Hanwha WIN', img1: '/images/events/hanwha.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: 'LNG WIN', img1: '/images/events/lng.png', img2: '/images/events/duel_dark.png' }
@@ -139,8 +139,8 @@ export const EVENTS_INFO: {
       address: '0x413f472ad44734ea39ddc65107b765553ad87ef2',
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
       active: true,
-      startBlock: 11346106,
-      endBlock: 11469686,
+      startBlock: 11426106,
+      endBlock: 11548486,
       pools: [
         { pid: 0, title: 'BTTS YES', img1: '/images/events/yes.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: 'BTTS NO', img1: '/images/events/no.png', img2: '/images/events/duel_dark.png' }
