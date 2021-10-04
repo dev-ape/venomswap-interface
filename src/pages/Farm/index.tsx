@@ -242,7 +242,7 @@ export default function Farm() {
   const [activeEvent, setActiveEvent] = useState(0)
   const [visibleForms, setVisibleForms] = useState<{ [key: number]: boolean }>({})
 
-  const events = useConfigEvents(chainId)
+  const events = useConfigEvents(chainId, true)
 
   const eventInfo = useEventInfo(events[activeEvent]?.address)
 
