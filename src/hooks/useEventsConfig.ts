@@ -27,6 +27,8 @@ export default function useConfigEvents(
       events = events?.filter(info => info.address === address) ?? []
     }
 
+    events = events?.sort((e1, e2) => e2.startBlock - e1.startBlock) ?? []
+
     return events
   }, [chainId, active, address, pairToFilterBy])
 }
