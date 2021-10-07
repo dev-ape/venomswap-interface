@@ -124,7 +124,7 @@ export const EVENTS_INFO: {
       desc: 'You win if you correctly guess Hanwha Life Esports vs. LNG Esports ML1 or ML2 05th October 11:00 UTC',
       address: '0x6af5a8ac8b719f416c091f79727d8600126a51e7',
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
-      active: true,
+      active: false,
       startBlock: 11426106,
       endBlock: 11518643,
       pools: [
@@ -138,7 +138,7 @@ export const EVENTS_INFO: {
         'You win if you correctly guess Italy vs. Spain National match Both Teams to Score YES or NO 06th October 21:00 UTC',
       address: '0x413f472ad44734ea39ddc65107b765553ad87ef2',
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
-      active: true,
+      active: false,
       startBlock: 11426106,
       endBlock: 11548486,
       pools: [
