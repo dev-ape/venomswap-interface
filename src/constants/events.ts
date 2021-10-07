@@ -159,7 +159,7 @@ export const EVENTS_INFO: {
         { pid: 0, title: 'MacaronSwap', img1: '/images/events/macaron.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: 'CafeSwap', img1: '/images/events/cafe.png', img2: '/images/events/duel_dark.png' }
       ]
-    },
+    }
   ],
   [ChainId.BSC_TESTNET]: []
 }
