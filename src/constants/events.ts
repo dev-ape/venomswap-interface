@@ -150,7 +150,7 @@ export const EVENTS_INFO: {
       title: 'MacaronSwap vs. CafeSwap',
       desc:
         'Which DEX do you use more? Vote the side, the highest LP side will win 17th October 21:00 UTC',
-      address: '0x413f472ad44734ea39ddc65107b765553ad87ef2',
+      address: '0x829857d70d0b4388fD6226B2657b441AB258df69',
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
       active: true,
       startBlock: 11425826,
