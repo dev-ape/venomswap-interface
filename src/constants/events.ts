@@ -145,7 +145,21 @@ export const EVENTS_INFO: {
         { pid: 0, title: 'BTTS YES', img1: '/images/events/yes.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: 'BTTS NO', img1: '/images/events/no.png', img2: '/images/events/duel_dark.png' }
       ]
-    }
+    },
+    {
+      title: 'MacaronSwap vs. CafeSwap',
+      desc:
+        'Which DEX do you use more? Vote the side, the highest LP side will win 17th October 21:00 UTC',
+      address: '0x413f472ad44734ea39ddc65107b765553ad87ef2',
+      tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
+      active: true,
+      startBlock: 11425826,
+      endBlock: 11722206,
+      pools: [
+        { pid: 0, title: 'MacaronSwap', img1: '/images/events/macaron.png', img2: '/images/events/duel_dark.png' },
+        { pid: 1, title: 'CafeSwap', img1: '/images/events/cafe.png', img2: '/images/events/duel_dark.png' }
+      ]
+    },
   ],
   [ChainId.BSC_TESTNET]: []
 }
