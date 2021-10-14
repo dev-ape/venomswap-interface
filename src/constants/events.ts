@@ -161,7 +161,8 @@ export const EVENTS_INFO: {
      },
     {
       title: 'BTC Price Prediction',
-      desc: 'You win if you correctly guess the price of BTC. Will it be higher or lower then $59,945 USD at 24 October 21:00 UTC?',
+      desc:
+        'You win if you correctly guess the price of BTC. Will it be higher or lower then $59,945 USD at 24 October 21:00 UTC?',
       address: '0x22DCCaAE06132D4D68D5cd1731B3C0EfCC974569',
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
       active: true,
