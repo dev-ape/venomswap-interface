@@ -42,7 +42,7 @@ export const EVENTS_INFO: {
         'You win if you correctly guess the price of BTC. Will it be higher or lower then $52,400 USD at 11 September 23:59 UTC?',
       address: '0xC231470e926678CfE8539acdd8b748082A2e4476',
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
-      active: true,
+      active: false,
       startBlock: 10658800,
       endBlock: 10834421,
       pools: [
@@ -157,6 +157,19 @@ export const EVENTS_INFO: {
       pools: [
         { pid: 0, title: 'MacaronSwap', img1: '/images/events/macaron.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: 'CafeSwap', img1: '/images/events/cafe.png', img2: '/images/events/duel_dark.png' }
+      ]
+     },
+    {
+      title: 'BTC Price Prediction',
+      desc: 'You win if you correctly guess the price of BTC. Will it be higher or lower then $59,945 USD at 24 October 21:00 UTC?',
+      address: '0x22DCCaAE06132D4D68D5cd1731B3C0EfCC974569',
+      tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
+      active: true,
+      startBlock: 11761116,
+      endBlock: 12063496,
+      pools: [
+        { pid: 0, title: 'HIGHER', img1: '/images/events/btc.png', img2: '/images/events/duel_dark.png' },
+        { pid: 1, title: 'LOWER', img1: '/images/events/btc.png', img2: '/images/events/duel_dark.png' }
       ]
     }
   ],
