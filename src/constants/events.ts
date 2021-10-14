@@ -159,7 +159,7 @@ export const EVENTS_INFO: {
         { pid: 1, title: 'CafeSwap', img1: '/images/events/cafe.png', img2: '/images/events/duel_dark.png' }
       ]
      },
-    {
+     {
       title: 'BTC Price Prediction',
       desc:
         'You win if you correctly guess the price of BTC. Will it be higher or lower then $59,945 USD at 24 October 21:00 UTC?',
