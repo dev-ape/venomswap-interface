@@ -153,7 +153,7 @@ export const EVENTS_INFO: {
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
       active: true,
       startBlock: 11425826,
-      endBlock: 11861844,
+      endBlock: 11772510,
       pools: [
         { pid: 0, title: 'MacaronSwap', img1: '/images/events/macaron.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: 'CafeSwap', img1: '/images/events/cafe.png', img2: '/images/events/duel_dark.png' }
