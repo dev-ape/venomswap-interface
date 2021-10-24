@@ -167,7 +167,7 @@ export const EVENTS_INFO: {
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
       active: true,
       startBlock: 11761116,
-      endBlock: 12063496,
+      endBlock: 12062205,
       pools: [
         { pid: 0, title: 'HIGHER', img1: '/images/events/btc.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: 'LOWER', img1: '/images/events/btc.png', img2: '/images/events/duel_dark.png' }
