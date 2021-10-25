@@ -172,6 +172,20 @@ export const EVENTS_INFO: {
         { pid: 0, title: 'HIGHER', img1: '/images/events/btc.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: 'LOWER', img1: '/images/events/btc.png', img2: '/images/events/duel_dark.png' }
       ]
+    },
+    {
+      title: 'PNG vs. JOE',
+      desc:
+        'PNGs Current Price $1,43, JOEs Current Price $3,02, Which one gains more value until 3 November 21:00 UTC',
+      address: '0x9aD20547869b6DdA33024f1d5A86c64aDC6Bb0A2',
+      tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
+      active: true,
+      startBlock: 11758716,
+      endBlock: 12022696,
+      pools: [
+        { pid: 0, title: 'PNG', img1: '/images/events/png.png', img2: '/images/events/duel_dark.png' },
+        { pid: 1, title: 'JOE', img1: '/images/events/joe.png', img2: '/images/events/duel_dark.png' }
+      ]
     }
   ],
   [ChainId.BSC_TESTNET]: []
