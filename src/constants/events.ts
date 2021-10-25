@@ -176,7 +176,7 @@ export const EVENTS_INFO: {
     {
       title: 'PNG vs. JOE',
       desc: 'PNGs Current Price $1,43, JOEs Current Price $3,02, Which one gains more value until 3 November 21:00 UTC',
-      address: '0x336b4B2d8bf40bDb6262BD159E2528F19C6155fd',
+      address: '0xbE30966731c5BF198511914960c11783b85a4807',
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
       active: true,
       startBlock: 12085538,
