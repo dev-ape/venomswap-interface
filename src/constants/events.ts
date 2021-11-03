@@ -188,8 +188,7 @@ export const EVENTS_INFO: {
     },
     {
       title: 'ETH Price Guess',
-      desc: 
-        'You win if you correctly guess the price of ETH. Will it be higher or lower then $4534 USD at 13 November 20:59 UTC?',
+      desc: 'ETH will it be higher or lower then $4534 USD at 13 November 20:59 UTC?',
       address: '0x7875475Aa672677c89b7bdC49e12794b3dfA5558',
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
       active: true,
