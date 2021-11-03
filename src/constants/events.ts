@@ -185,6 +185,19 @@ export const EVENTS_INFO: {
         { pid: 0, title: 'PNG', img1: '/images/events/png.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: 'JOE', img1: '/images/events/joe.png', img2: '/images/events/duel_dark.png' }
       ]
+    },
+    {
+      title: 'ETH Price Guess',
+      desc: 'You win if you correctly guess the price of ETH. Will it be higher or lower then $4534 USD at 13 November 20:59 UTC?',
+      address: '0x7875475Aa672677c89b7bdC49e12794b3dfA5558',
+      tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
+      active: true,
+      startBlock: 12337533,
+      endBlock: 12630313,
+      pools: [
+        { pid: 0, title: 'ETH HIGHER', img1: '/images/events/ETHH.png', img2: '/images/events/duel_dark.png' },
+        { pid: 1, title: 'ETH LOWER', img1: '/images/events/ETHH.png', img2: '/images/events/duel_dark.png' }
+      ]
     }
   ],
   [ChainId.BSC_TESTNET]: []
