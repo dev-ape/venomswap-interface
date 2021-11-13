@@ -201,8 +201,7 @@ export const EVENTS_INFO: {
     },
     {
       title: 'AVAX Price Guess',
-      desc:
-        'AVAX will it be higher or lower than $103 USD at 23 November 23:59 UTC?',
+      desc: 'AVAX will it be higher or lower than $103 USD at 23 November 23:59 UTC?',
       address: '0xe3163D2D5E32f4566c0691dD61bBcB4aa18d45B9',
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
       active: true,
