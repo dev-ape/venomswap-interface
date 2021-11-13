@@ -171,10 +171,7 @@ const HideSmallFlex = styled(HideSmall)`
 `
 
 const AddressLink = styled(ExternalLink)`
-  font-size: 0.825rem;
   color: ${({ theme }) => theme.text3};
-  margin-left: 1rem;
-  font-size: 0.825rem;
   display: flex;
   :hover {
     color: ${({ theme }) => theme.text2};
