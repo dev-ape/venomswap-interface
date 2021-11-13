@@ -1,13 +1,14 @@
-import { JSBI, TokenAmount } from '@venomswap/sdk'
+import { Fraction, JSBI, TokenAmount } from '@venomswap/sdk'
 import { useMemo } from 'react'
 import { useActiveWeb3React } from '../../hooks'
 import { useSingleCallResult, useMultipleContractSingleData } from '../multicall/hooks'
 import { useLotteryFactoryContract } from '../../hooks/useContract'
 import useTokensWithWethPrices from '../../hooks/useTokensWithWETHPrices'
 import { Interface } from '@ethersproject/abi'
-import { abi as DUEL_LOTTERY_ABI } from '../../constants/abis/DuelLottery.json'
+import DUEL_LOTTERY_ABI from '../../constants/abis/DuelLottery.json'
 import useCurrentBlockTimestamp from 'hooks/useCurrentBlockTimestamp'
 import validLotteryInfo from 'utils/validLotteryInfo'
+import { ethers } from 'ethers'
 
 export interface LotteryInfo {
   id: number
@@ -22,6 +23,8 @@ export interface LotteryInfo {
   ticketPrice: TokenAmount | undefined
 
   userTicketCount: JSBI
+  winner: string
+  winAmount: Fraction
 
   canBuy: boolean
 }
@@ -47,6 +50,9 @@ export function useLotteryInfo(): LotteryInfo[] {
 
   const userTickets = useMultipleContractSingleData(addresses, LOTTERY_INTERFACE, 'userTickets', [account ?? undefined])
 
+  const winners = useMultipleContractSingleData(addresses, LOTTERY_INTERFACE, 'winner')
+  const winAmounts = useMultipleContractSingleData(addresses, LOTTERY_INTERFACE, 'winAmount')
+
   const blockTimestamp = useCurrentBlockTimestamp()
 
   const tokensWithPrices = useTokensWithWethPrices()
@@ -65,6 +71,9 @@ export function useLotteryInfo(): LotteryInfo[] {
       const currentSupplyCall = currentSupplies[index]
       const userTicketCountCall = userTickets[index]
       const currentBlockTime = JSBI.BigInt(blockTimestamp?.toNumber() ?? 0)
+
+      const winnerCall = winners[index]
+      const winAmountCall = winAmounts[index]
 
       if (
         validLotteryInfo(
@@ -86,6 +95,10 @@ export function useLotteryInfo(): LotteryInfo[] {
         const currentSupply = JSBI.BigInt(currentSupplyCall.result?.[0]) ?? 0
         const userTicketCount = JSBI.BigInt(userTicketCountCall.result?.[0]) ?? 0
 
+        const winner = winnerCall.result?.[0] ?? ethers.constants.AddressZero
+
+        const winAmount = new Fraction(JSBI.BigInt(winAmountCall.result?.[0]) ?? 0, JSBI.BigInt(1))
+
         const canBuy = JSBI.greaterThanOrEqual(currentBlockTime, startTime) && JSBI.lessThan(currentBlockTime, endTime)
 
         const lotteryInfo = {
@@ -98,6 +111,8 @@ export function useLotteryInfo(): LotteryInfo[] {
           ticketPrice,
           currentSupply,
           userTicketCount,
+          winner,
+          winAmount,
           canBuy
         }
 

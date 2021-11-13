@@ -8,7 +8,7 @@ import { TransactionResponse } from '@ethersproject/providers'
 import { RowBetween } from '../Row'
 import { TYPE, CloseIcon } from '../../theme'
 import { ButtonError } from '../Button'
-import CurrencyInputPanel from '../CurrencyInputPanel'
+import CustomNumericalInput from './CustomNumericalInput'
 import { useActiveWeb3React } from '../../hooks'
 import { useLotteryContract } from '../../hooks/useContract'
 import { useApproveCallback, ApprovalState } from '../../hooks/useApproveCallback'
@@ -117,15 +117,15 @@ export default function BuyTicketComponent({ info, balance }: StakingProps) {
     <ContentWrapper gap="lg">
       {!failed && (
         <InputWrapper>
-          <CurrencyInputPanel
+          <CustomNumericalInput
+            id="buy-ticket"
             value={typedValue}
             onUserInput={onUserInput}
-            showMaxButton={false}
+            label={'Tickets amount'}
+            balance={balance}
             currency={info.softCap.token}
-            label={''}
-            disableCurrencySelect={true}
+            price={info.ticketPrice}
             customBalanceText={'Balance: '}
-            id="buy-ticket"
           />
 
           <>

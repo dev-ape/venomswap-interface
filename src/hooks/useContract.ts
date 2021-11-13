@@ -21,7 +21,7 @@ import { abi as GOVERNANCE_TOKEN_ABI } from '../constants/abis/HepaToken.json'
 import { abi as EVENT_ABI } from '../constants/abis/DuelEvent.json'
 import { abi as STAKING_ABI } from '../constants/abis/DuelStaking.json'
 import { abi as LOTTERY_FACTORY_ABI } from '../constants/abis/LotteryFactory.json'
-import { abi as DUEL_LOTTERY_ABI } from '../constants/abis/DuelLottery.json'
+import DUEL_LOTTERY_ABI from '../constants/abis/DuelLottery.json'
 import {
   ARGENT_WALLET_DETECTOR_ABI,
   ARGENT_WALLET_DETECTOR_MAINNET_ADDRESS
