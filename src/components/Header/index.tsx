@@ -19,7 +19,7 @@ import { BASE_CURRENCY } from '../../connectors'
 
 const HeaderFrame = styled.div`
   display: grid;
-  grid-template-columns: 1fr 120px;
+  grid-template-columns: 120px 1fr 300px;
   align-items: center;
   justify-content: space-between;
   align-items: center;
@@ -30,7 +30,7 @@ const HeaderFrame = styled.div`
   padding: 1rem;
   z-index: 2;
   ${({ theme }) => theme.mediaWidth.upToMedium`
-    grid-template-columns: 1fr;
+    grid-template-columns: 120px 1fr;
     padding: 0 1rem;
     width: calc(100%);
     position: relative;
@@ -46,23 +46,6 @@ const HeaderControls = styled.div`
   flex-direction: row;
   align-items: center;
   justify-self: flex-end;
-
-  ${({ theme }) => theme.mediaWidth.upToMedium`
-    flex-direction: row;
-    justify-content: space-between;
-    justify-self: center;
-    width: 100%;
-    max-width: 960px;
-    padding: 1rem;
-    position: fixed;
-    bottom: 0px;
-    left: 0px;
-    width: 100%;
-    z-index: 99;
-    height: 72px;
-    border-radius: 12px 12px 0 0;
-    background-color: ${({ theme }) => theme.bg1};
-  `};
 `
 
 const HeaderElement = styled.div`
@@ -85,9 +68,28 @@ const HeaderElementWrap = styled.div`
   align-items: center;
 `
 
-const HeaderRow = styled(Row)`
+const HeaderLogo = styled(Row)`
   ${({ theme }) => theme.mediaWidth.upToMedium`
    width: 100%;
+  `};
+`
+
+const HeaderRow = styled(Row)`
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+    flex-direction: row;
+    justify-content: space-between;
+    justify-self: center;
+    width: 100%;
+    max-width: 960px;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 99;
+    height: 72px;
+    border-radius: 12px 12px 0 0;
+    background-color: ${({ theme }) => theme.bg1};
   `};
 `
 
@@ -95,7 +97,7 @@ const HeaderLinks = styled(Row)`
   justify-content: center;
   ${({ theme }) => theme.mediaWidth.upToMedium`
     padding: 1rem 0 1rem 1rem;
-    justify-content: flex-end;
+    justify-content: space-between;
 `};
 `
 
@@ -158,6 +160,9 @@ const StyledNavLink = styled(NavLink).attrs({
     font-weight: 600;
     color: ${({ theme }) => theme.text1};
   }
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+        font-size: 0.75rem;
+  `};
 
   :hover,
   :focus {
@@ -203,12 +208,14 @@ export default function Header() {
 
   return (
     <HeaderFrame>
-      <HeaderRow>
+      <HeaderLogo>
         <Title href=".">
           <UniIcon>
             <img height={'48px'} src={LogoLight} alt="logo" />
           </UniIcon>
         </Title>
+      </HeaderLogo>
+      <HeaderRow>
         <HeaderLinks>
           <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
             {t('swap')}
@@ -218,6 +225,9 @@ export default function Header() {
           </StyledNavLink>
           <StyledNavLink id={`stake-nav-link`} to={'/stake'}>
             Stake
+          </StyledNavLink>
+          <StyledNavLink id={`stake-nav-link`} to={'/lottery'}>
+            Lottery
           </StyledNavLink>
           <StyledNavLink id={`challenges-nav-link`} to={'/challenge'}>
             Challenges NFT

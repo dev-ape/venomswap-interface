@@ -87,6 +87,18 @@ export const GOVERNANCE_TOKEN: { [chainId in ChainId]: Token } = {
   )
 }
 
+export const LOTTERY_FACTORY: { [chainId in ChainId]: string } = {
+  [ChainId.MAINNET]: ZERO_ONE_ADDRESS,
+  [ChainId.RINKEBY]: ZERO_ONE_ADDRESS,
+  [ChainId.ROPSTEN]: ZERO_ONE_ADDRESS,
+  [ChainId.GÖRLI]: ZERO_ONE_ADDRESS,
+  [ChainId.KOVAN]: ZERO_ONE_ADDRESS,
+  [ChainId.BSC_MAINNET]: '0xDEe2d6c780dEB396F034eE4b1204b7F6E5bdaCeA',
+  [ChainId.BSC_TESTNET]: '0xc719c542792643FaEB9aEa68938791456a00bE1e',
+  [ChainId.HARMONY_MAINNET]: ZERO_ONE_ADDRESS,
+  [ChainId.HARMONY_TESTNET]: ZERO_ONE_ADDRESS
+}
+
 export const MASTER_BREEDER: { [chainId in ChainId]: string } = {
   [ChainId.MAINNET]: ZERO_ONE_ADDRESS,
   [ChainId.RINKEBY]: ZERO_ONE_ADDRESS,

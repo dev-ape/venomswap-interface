@@ -20,6 +20,7 @@ import usePlatformName from '../hooks/usePlatformName'
 import Farm from './Farm'
 import Stake from './Stake'
 import Challenge from './Challenge'
+import Lottery from './Lottery'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -88,6 +89,7 @@ export default function App() {
               <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
               <Route exact strict path="/farm" component={Farm} />
               <Route exact strict path="/stake" component={Stake} />
+              <Route exact strict path="/lottery" component={Lottery} />
               <Route exact strict path="/challenge" component={Challenge} />
               {/* <Route exact strict path="/staking" component={Earn} />
               <Route exact strict path="/staking/archived" component={EarnArchived} />
