@@ -12,20 +12,9 @@ import { useLotteryInfo } from 'state/lottery/hooks'
 import useGovernanceToken from 'hooks/useGovernanceToken'
 import BuyTicketComponent from 'components/lottery/BuyTicket'
 
-import { ReactComponent as QuestionIcon } from '../../assets/images/question.svg'
 import { getEtherscanLink, shortenAddress } from 'utils'
 import { ethers } from 'ethers'
 import useCurrentBlockTimestamp from 'hooks/useCurrentBlockTimestamp'
-
-const StyledQuestionIcon = styled(QuestionIcon)`
-  circle {
-    fill: ${({ theme }) => theme.bg4};
-  }
-  ,
-  path {
-    fill: ${({ theme }) => theme.text1};
-  }
-`
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 920px;
@@ -95,11 +84,6 @@ const LotteryWrapper = styled.div`
   font-weight: 500;
   box-shadow: 0 4px 15px ${({ theme }) => theme.advancedBG};
 `
-// const PoolName = styled.div``
-// const PoolPair = styled.div`
-//   font-size: 14px;
-//   color: ${({ theme }) => theme.text3};
-// `
 
 const LotteryColumn = styled.div`
   display: flex;
@@ -138,22 +122,6 @@ const Divider = styled.hr`
   border: 4px solid ${({ theme }) => theme.bg4};
   border-radius: 4px;
 `
-// const CustomButton = styled(ButtonConfirmed)`
-//   height: 40px;
-//   border-radius: 8px;
-//   width: 100%;
-//   margin-right: 0;
-// `
-
-// const CustomButtonRed = styled(CustomButton)`
-//   background-color: ${({ theme }) => theme.red3};
-//   &:hover {
-//     background-color: ${({ theme }) => theme.red2};
-//   }
-//   &:focus {
-//     background-color: ${({ theme }) => theme.red2};
-//   }
-// `
 const BuyTicketWrapper = styled.div`
   display: flex;
   gap: 20px;
@@ -215,8 +183,7 @@ export default function Lottery() {
   return (
     <PageWrapper gap="lg" justify="center">
       <LotteryTitleWrapper onClick={() => setCollapsed(!collapsed)}>
-        <LotteryTitle>Active Lotteries</LotteryTitle>
-        <StyledQuestionIcon />
+        <LotteryTitle>Active Lotteries 🤺 ❔</LotteryTitle>
       </LotteryTitleWrapper>
 
       <LotteryDesc show={!collapsed}>
