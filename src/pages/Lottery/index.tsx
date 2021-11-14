@@ -18,8 +18,12 @@ import { ethers } from 'ethers'
 import useCurrentBlockTimestamp from 'hooks/useCurrentBlockTimestamp'
 
 const StyledQuestionIcon = styled(QuestionIcon)`
+  circle {
+    fill: ${({ theme }) => theme.bg4};
+  }
+  ,
   path {
-    stroke: ${({ theme }) => theme.text1};
+    fill: ${({ theme }) => theme.text1};
   }
 `
 
