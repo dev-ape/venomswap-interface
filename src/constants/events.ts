@@ -211,6 +211,19 @@ export const EVENTS_INFO: {
         { pid: 0, title: 'AVAX HIGHER', img1: '/images/events/AVAXX.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: 'AVAX LOWER', img1: '/images/events/AVAXX.png', img2: '/images/events/duel_dark.png' }
       ]
+    },
+    {
+      title: 'USD/TRY Price Guess',
+      desc: 'USD will it be higher or lower than 14.60 TRY at 14 December 23:59 UTC?',
+      address: '0xf61A60F6e7539a8B9658c0134848939423418c9B',
+      tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
+      active: true,
+      startBlock: 12896285,
+      endBlock: 13479485,
+      pools: [
+        { pid: 0, title: 'USD/TRY HIGHER', img1: '/images/events/tl.png', img2: '/images/events/duel_dark.png' },
+        { pid: 1, title: 'USD/TRY LOWER', img1: '/images/events/tl.png', img2: '/images/events/duel_dark.png' }
+      ]
     }
   ],
   [ChainId.BSC_TESTNET]: []
