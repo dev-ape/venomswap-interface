@@ -206,7 +206,7 @@ export const EVENTS_INFO: {
       tokens: getPairTokensWithDefaults(ChainId.BSC_MAINNET, 'WBNB/DUEL'),
       active: true,
       startBlock: 12621622,
-      endBlock: 12915622,
+      endBlock: 1637708960,
       pools: [
         { pid: 0, title: 'AVAX HIGHER', img1: '/images/events/AVAXX.png', img2: '/images/events/duel_dark.png' },
         { pid: 1, title: 'AVAX LOWER', img1: '/images/events/AVAXX.png', img2: '/images/events/duel_dark.png' }
